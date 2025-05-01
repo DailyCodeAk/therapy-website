@@ -1,0 +1,67 @@
+<div class="auth-modal-overlay" id="registerModal">
+    <div class="auth-modal-container">
+        <button class="auth-modal-close" id="closeRegisterModal">✕</button>
+        <h3 class="auth-modal-title">Create an Account</h3>
+
+        <form id="registerForm">
+            <div class="auth-form-group">
+                <label for="registerFirstName">First Name</label>
+                <input type="text" id="registerFirstName" class="auth-form-control" required>
+                <div class="auth-error" id="registerFirstNameError">Please enter your first name</div>
+            </div>
+
+            <div class="auth-form-group">
+                <label for="registerLastName">Last Name</label>
+                <input type="text" id="registerLastName" class="auth-form-control" required>
+                <div class="auth-error" id="registerLastNameError">Please enter your last name</div>
+            </div>
+
+            <div class="auth-form-group">
+                <label for="registerEmail">Email</label>
+                <input type="email" id="registerEmail" class="auth-form-control" required>
+                <div class="auth-error" id="registerEmailError">Please enter a valid email address</div>
+            </div>
+
+            <div class="auth-form-group">
+                <label for="registerPassword">Password</label>
+                <input type="password" id="registerPassword" class="auth-form-control" required>
+                <div class="auth-error" id="registerPasswordError">Password must be at least 8 characters with a letter and a number</div>
+            </div>
+
+            <div class="auth-form-group">
+                <label for="registerConfirmPassword">Confirm Password</label>
+                <input type="password" id="registerConfirmPassword" class="auth-form-control" required>
+                <div class="auth-error" id="registerConfirmPasswordError">Passwords do not match</div>
+            </div>
+
+            <div style="margin-bottom: 1rem;">
+                <label style="display: flex; align-items: flex-start; gap: 0.5rem; cursor: pointer;">
+                    <input type="checkbox" id="termsAgree" required style="margin-top: 3px;">
+                    <span>I agree to the <a href="#" style="color: var(--primary);">Terms of Service</a> and <a href="#" style="color: var(--primary);">Privacy Policy</a></span>
+                </label>
+                <div class="auth-error" id="termsAgreeError">You must agree to the terms</div>
+            </div>
+
+            <button type="submit" class="auth-btn">Create Account</button>
+
+            <div class="auth-error" id="registerGeneralError" style="text-align: center; margin-top: 1rem; display: none;">An error occurred during registration</div>
+        </form>
+
+        <div class="auth-or-divider">
+            <span>OR</span>
+        </div>
+
+        <div class="auth-social-buttons">
+            <button class="auth-social-btn">
+                <span>Google</span>
+            </button>
+            <button class="auth-social-btn">
+                <span>Facebook</span>
+            </button>
+        </div>
+
+        <div class="auth-form-footer">
+            Already have an account? <a id="showLoginBtn">Sign in</a>
+        </div>
+    </div>
+</div>

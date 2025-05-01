@@ -1,0 +1,2145 @@
+<div class="mt-4">
+    <h4 class="font-medium text-sm mb-2">Key Insights:</h4>
+    <ul class="text-sm space-y-1 list-disc pl-5">
+        <li>91% of clients are satisfied with their therapy experience</li>
+        <li>Therapist expertise is rated highest (4.9/5)</li>
+        <li>Appointment scheduling satisfaction improved 12% this quarter</li>
+        <li>Website experience rating increased after recent updates</li>
+    </ul>
+</div>
+</div>
+</div>
+
+<!-- Create Survey Modal -->
+<div id="create-survey-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+<div class="bg-white rounded-lg w-full max-w-lg p-6">
+<div class="flex justify-between items-center mb-4">
+    <h3 class="text-xl font-bold">Create New Survey</h3>
+    <button class="close-modal text-gray-500 hover:text-gray-700">
+        <i class="fas fa-times"></i>
+    </button>
+</div>
+<form id="create-survey-form">
+    <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="survey-name">
+            Survey Name
+        </label>
+        <input class="border rounded w-full py-2 px-3" id="survey-name" type="text" placeholder="Post-Therapy Feedback" required>
+    </div>
+    <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="survey-description">
+            Description
+        </label>
+        <textarea class="border rounded w-full py-2 px-3" id="survey-description" rows="2" placeholder="Brief description of the survey purpose..."></textarea>
+    </div>
+    <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2">
+            Questions
+        </label>
+        <div id="survey-questions" class="space-y-3">
+            <div class="border rounded p-3 bg-gray-50">
+                <div class="flex justify-between mb-2">
+                    <span class="font-medium">Question 1</span>
+                    <button type="button" class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></button>
+                </div>
+                <input class="border rounded w-full py-2 px-3 mb-2" type="text" placeholder="Enter your question" required>
+                <select class="border rounded w-full py-2 px-3">
+                    <option value="rating">Rating (1-5)</option>
+                    <option value="text">Text Answer</option>
+                    <option value="multiple">Multiple Choice</option>
+                </select>
+            </div>
+        </div>
+        <button type="button" id="add-question" class="mt-2 text-blue-500 hover:text-blue-700">
+            <i class="fas fa-plus mr-1"></i> Add Question
+        </button>
+    </div>
+    <div class="mb-6 flex space-x-4">
+        <div class="flex items-center">
+            <input type="checkbox" id="survey-anonymous" class="mr-2">
+            <label for="survey-anonymous">Anonymous Responses</label>
+        </div>
+        <div class="flex items-center">
+            <input type="checkbox" id="survey-required" class="mr-2">
+            <label for="survey-required">Required for Clients</label>
+        </div>
+    </div>
+    <div class="flex justify-end">
+        <button class="close-modal bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded mr-2" type="button">
+            Cancel
+        </button>
+        <button class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded" type="submit">
+            Create Survey
+        </button>
+    </div>
+</form>
+</div>
+</div>
+</div>
+
+<!-- Password Reset Section -->
+<div id="password-resets-section" class="section hidden">
+<h2 class="text-2xl font-bold mb-6">Password Resets</h2>
+
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<div class="bg-white rounded-lg shadow p-4 lg:col-span-2">
+<h3 class="font-bold mb-4">Reset Requests</h3>
+<div class="overflow-x-auto">
+    <table class="w-full table-auto">
+        <thead>
+            <tr class="bg-gray-100">
+                <th class="px-4 py-2 text-left">User</th>
+                <th class="px-4 py-2 text-left">Email</th>
+                <th class="px-4 py-2 text-left">Requested</th>
+                <th class="px-4 py-2 text-left">Status</th>
+                <th class="px-4 py-2 text-left">Actions</th>
+            </tr>
+        </thead>
+        <tbody id="reset-requests-table">
+            <tr>
+                <td class="border px-4 py-2">John Doe</td>
+                <td class="border px-4 py-2">john.doe@example.com</td>
+                <td class="border px-4 py-2">Apr 30, 2025 - 9:45 AM</td>
+                <td class="border px-4 py-2"><span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs">Pending</span></td>
+                <td class="border px-4 py-2">
+                    <div class="flex space-x-2">
+                        <button class="bg-green-500 hover:bg-green-600 text-white px-2 py-1 rounded text-xs">Approve</button>
+                        <button class="bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded text-xs">Deny</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="border px-4 py-2">Emily Clark</td>
+                <td class="border px-4 py-2">emily@example.com</td>
+                <td class="border px-4 py-2">Apr 30, 2025 - 10:32 AM</td>
+                <td class="border px-4 py-2"><span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs">Pending</span></td>
+                <td class="border px-4 py-2">
+                    <div class="flex space-x-2">
+                        <button class="bg-green-500 hover:bg-green-600 text-white px-2 py-1 rounded text-xs">Approve</button>
+                        <button class="bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded text-xs">Deny</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="border px-4 py-2">Michael Johnson</td>
+                <td class="border px-4 py-2">michael@example.com</td>
+                <td class="border px-4 py-2">Apr 29, 2025 - 3:15 PM</td>
+                <td class="border px-4 py-2"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs">Completed</span></td>
+                <td class="border px-4 py-2">
+                    <div class="flex space-x-2">
+                        <button class="bg-blue-500 hover:bg-blue-600 text-white px-2 py-1 rounded text-xs">Details</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="border px-4 py-2">Robert Brown</td>
+                <td class="border px-4 py-2">robert@example.com</td>
+                <td class="border px-4 py-2">Apr 29, 2025 - 11:20 AM</td>
+                <td class="border px-4 py-2"><span class="px-2 py-1 bg-red-100 text-red-800 rounded-full text-xs">Denied</span></td>
+                <td class="border px-4 py-2">
+                    <div class="flex space-x-2">
+                        <button class="bg-blue-500 hover:bg-blue-600 text-white px-2 py-1 rounded text-xs">Details</button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow p-4">
+<h3 class="font-bold mb-4">Manual Reset</h3>
+<form id="manual-reset-form">
+    <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="reset-email">
+            User Email
+        </label>
+        <input class="border rounded w-full py-2 px-3" id="reset-email" type="email" placeholder="user@example.com" required>
+    </div>
+    <div class="mb-6">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="reset-reason">
+            Reason
+        </label>
+        <select class="border rounded w-full py-2 px-3" id="reset-reason" required>
+            <option value="">Select a reason</option>
+            <option value="forgot">Forgot Password</option>
+            <option value="compromised">Account Compromised</option>
+            <option value="locked">Account Locked</option>
+            <option value="other">Other</option>
+        </select>
+    </div>
+    <div>
+        <label class="flex items-center mb-4">
+            <input type="checkbox" class="mr-2" id="reset-notify">
+            <span>Send notification email to user</span>
+        </label>
+    </div>
+    <button class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded w-full" type="submit">
+        Reset Password
+    </button>
+</form>
+<div class="mt-6">
+    <h4 class="font-medium text-sm mb-2">Recently Reset</h4>
+    <ul class="text-sm space-y-2">
+        <li class="flex justify-between">
+            <span>jane.smith@example.com</span>
+            <span class="text-gray-500">10 min ago</span>
+        </li>
+        <li class="flex justify-between">
+            <span>david.wilson@example.com</span>
+            <span class="text-gray-500">2 hours ago</span>
+        </li>
+        <li class="flex justify-between">
+            <span>lisa.miller@example.com</span>
+            <span class="text-gray-500">Yesterday</span>
+        </li>
+    </ul>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Settings Section -->
+<div id="settings-section" class="section hidden">
+<h2 class="text-2xl font-bold mb-6">Settings</h2>
+
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<div class="lg:col-span-2">
+<div class="bg-white rounded-lg shadow p-6 mb-6">
+    <h3 class="font-bold mb-4">General Settings</h3>
+    <form id="general-settings-form">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div>
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="site-name">
+                    Website Name
+                </label>
+                <input class="border rounded w-full py-2 px-3" id="site-name" type="text" value="Healing Minds Therapy">
+            </div>
+            <div>
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="site-email">
+                    Contact Email
+                </label>
+                <input class="border rounded w-full py-2 px-3" id="site-email" type="email" value="contact@healingminds.com">
+            </div>
+            <div>
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="site-phone">
+                    Contact Phone
+                </label>
+                <input class="border rounded w-full py-2 px-3" id="site-phone" type="tel" value="(555) 123-4567">
+            </div>
+            <div>
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="business-hours">
+                    Business Hours
+                </label>
+                <input class="border rounded w-full py-2 px-3" id="business-hours" type="text" value="Mon-Fri: 8am-7pm, Sat: 9am-3pm">
+            </div>
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="site-address">
+                Address
+            </label>
+            <input class="border rounded w-full py-2 px-3" id="site-address" type="text" value="123 Healing Way, Suite 200, Wellness City, WC 12345">
+        </div>
+        <div class="mb-6">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="site-description">
+                Site Description
+            </label>
+            <textarea class="border rounded w-full py-2 px-3" id="site-description" rows="3">Healing Minds Therapy provides compassionate mental health services to individuals, couples, and families. Our team of licensed therapists offers personalized care to help you on your journey to wellness.</textarea>
+        </div>
+        <div class="flex justify-end">
+            <button class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded" type="submit">
+                Save Changes
+            </button>
+        </div>
+    </form>
+</div>
+
+<div class="bg-white rounded-lg shadow p-6">
+    <h3 class="font-bold mb-4">Email Templates</h3>
+    <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="template-select">
+            Select Template
+        </label>
+        <select class="border rounded w-full py-2 px-3" id="template-select">
+            <option value="welcome">Welcome Email</option>
+            <option value="appointment">Appointment Confirmation</option>
+            <option value="reminder">Appointment Reminder</option>
+            <option value="password">Password Reset</option>
+            <option value="feedback">Feedback Request</option>
+        </select>
+    </div>
+    <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="template-subject">
+            Subject Line
+        </label>
+        <input class="border rounded w-full py-2 px-3" id="template-subject" type="text" value="Welcome to Healing Minds Therapy">
+    </div>
+    <div class="mb-6">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="template-body">
+            Email Body
+        </label>
+        <textarea class="border rounded w-full py-2 px-3" id="template-body" rows="8">Dear {{client_name}},
+
+Welcome to Healing Minds Therapy! We're delighted that you've chosen us for your mental health journey.
+
+Your account has been successfully created. You can now log in at {{login_url}} to access our client portal where you can:
+- Schedule and manage appointments
+- Complete intake forms
+- Access resources shared by your therapist
+- Make payments
+
+Your first appointment is scheduled for {{appointment_date}} with {{therapist_name}}.
+
+If you have any questions, please don't hesitate to contact us at {{contact_email}} or call us at {{contact_phone}}.
+
+Warm regards,
+The Healing Minds Team</textarea>
+    </div>
+    <div class="flex justify-between">
+        <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+            Send Test Email
+        </button>
+        <button class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">
+            Save Template
+        </button>
+    </div>
+</div>
+</div>
+<div>
+<div class="bg-white rounded-lg shadow p-6 mb-6">
+    <h3 class="font-bold mb-4">System Settings</h3>
+    <div class="space-y-4">
+        <div>
+            <label class="flex items-center justify-between">
+                <span>Enable Appointment Reminders</span>
+                <div class="relative">
+                    <input type="checkbox" class="sr-only" id="appointment-reminders" checked>
+                    <div class="block bg-gray-300 w-12 h-6 rounded-full"></div>
+                    <div class="dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition transform translate-x-6"></div>
+                </div>
+            </label>
+        </div>
+        <div>
+            <label class="flex items-center justify-between">
+                <span>Enable Client Portal</span>
+                <div class="relative">
+                    <input type="checkbox" class="sr-only" id="client-portal" checked>
+                    <div class="block bg-gray-300 w-12 h-6 rounded-full"></div>
+                    <div class="dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition transform translate-x-6"></div>
+                </div>
+            </label>
+        </div>
+        <div>
+            <label class="flex items-center justify-between">
+                <span>Enable Online Payments</span>
+                <div class="relative">
+                    <input type="checkbox" class="sr-only" id="online-payments" checked>
+                    <div class="block bg-gray-300 w-12 h-6 rounded-full"></div>
+                    <div class="dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition transform translate-x-6"></div>
+                </div>
+            </label>
+        </div>
+        <div>
+            <label class="flex items-center justify-between">
+                <span>Enable Chatbot</span>
+                <div class="relative">
+                    <input type="checkbox" class="sr-only" id="enable-chatbot" checked>
+                    <div class="block bg-gray-300 w-12 h-6 rounded-full"></div>
+                    <div class="dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition transform translate-x-6"></div>
+                </div>
+            </label>
+        </div>
+        <div>
+            <label class="flex items-center justify-between">
+                <span>Allow Self-Registration</span>
+                <div class="relative">
+                    <input type="checkbox" class="sr-only" id="self-registration" checked>
+                    <div class="block bg-gray-300 w-12 h-6 rounded-full"></div>
+                    <div class="dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition transform translate-x-6"></div>
+                </div>
+            </label>
+        </div>
+        <div>
+            <label class="flex items-center justify-between">
+                <span>Maintenance Mode</span>
+                <div class="relative">
+                    <input type="checkbox" class="sr-only" id="maintenance-mode">
+                    <div class="block bg-gray-300 w-12 h-6 rounded-full"></div>
+                    <div class="dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition"></div>
+                </div>
+            </label>
+        </div>
+    </div>
+</div>
+<div class="bg-white rounded-lg shadow p-6">
+    <h3 class="font-bold mb-4">Database Actions</h3>
+    <div class="space-y-3">
+        <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded w-full">
+            Backup Database
+        </button>
+        <button class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded w-full">
+            Restore From Backup
+        </button>
+        <button class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded w-full">
+            Clear Cache
+        </button>
+        <button class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded w-full">
+            Reset Database
+        </button>
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<script>
+// Initialize Dashboard
+document.addEventListener('DOMContentLoaded', function() {
+// Mobile menu toggle
+const mobileMenu = document.getElementById('mobile-menu');
+const mobileClose = document.getElementById('mobile-close');
+const sidebar = document.querySelector('.sidebar');
+
+if (mobileMenu) {
+mobileMenu.addEventListener('click', function() {
+sidebar.classList.add('active');
+});
+}
+
+if (mobileClose) {
+mobileClose.addEventListener('click', function() {
+sidebar.classList.remove('active');
+});
+}
+
+// Navigation
+const navLinks = document.querySelectorAll('.nav-link');
+const sections = document.querySelectorAll('.section');
+
+navLinks.forEach(link => {
+link.addEventListener('click', function(e) {
+e.preventDefault();
+
+// Remove active class from all links and sections
+navLinks.forEach(l => l.classList.remove('active', 'bg-indigo-700'));
+sections.forEach(s => s.classList.add('hidden'));
+
+// Add active class to clicked link
+this.classList.add('active', 'bg-indigo-700');
+
+// Show corresponding section
+const sectionId = this.getAttribute('href').substring(1) + '-section';
+document.getElementById(sectionId).classList.remove('hidden');
+
+// Close mobile menu if open
+if (window.innerWidth < 768) {
+    sidebar.classList.remove('active');
+}
+});
+});
+
+// Modal handling
+const modalButtons = {
+'add-user-btn': 'add-user-modal',
+'add-therapist-btn': 'add-therapist-modal',
+'add-appointment-btn': 'add-appointment-modal',
+'add-response-btn': 'add-response-modal',
+'create-survey-btn': 'create-survey-modal'
+};
+
+Object.keys(modalButtons).forEach(btnId => {
+const btn = document.getElementById(btnId);
+const modal = document.getElementById(modalButtons[btnId]);
+
+if (btn && modal) {
+btn.addEventListener('click', () => {
+    modal.classList.remove('hidden');
+});
+
+const closeButtons = modal.querySelectorAll('.close-modal');
+closeButtons.forEach(closeBtn => {
+    closeBtn.addEventListener('click', () => {
+        modal.classList.add('hidden');
+    });
+});
+}
+});
+
+// Initialize Charts
+if (typeof Chart !== 'undefined') {
+// Revenue Chart
+const revenueCtx = document.getElementById('revenue-chart');
+if (revenueCtx) {
+new Chart(revenueCtx, {
+    type: 'line',
+    data: {
+        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        datasets: [{
+            label: 'Revenue',
+            data: [1800, 2200, 1900, 2400, 2100, 1700, 2430],
+            backgroundColor: 'rgba(99, 102, 241, 0.2)',
+            borderColor: 'rgba(99, 102, 241, 1)',
+            borderWidth: 2,
+            tension: 0.3
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+}
+
+// Therapist Chart
+const therapistCtx = document.getElementById('therapist-chart');
+if (therapistCtx) {
+new Chart(therapistCtx, {
+    type: 'bar',
+    data: {
+        labels: ['Dr. Johnson', 'Dr. Chen', 'Dr. Wong', 'Dr. Taylor'],
+        datasets: [{
+            label: 'Appointments',
+            data: [42, 38, 29, 24],
+            backgroundColor: [
+                'rgba(99, 102, 241, 0.6)',
+                'rgba(52, 211, 153, 0.6)',
+                'rgba(139, 92, 246, 0.6)',
+                'rgba(251, 191, 36, 0.6)'
+            ]
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+}
+
+// Revenue Trend Chart
+const revenueTrendCtx = document.getElementById('revenue-trend-chart');
+if (revenueTrendCtx) {
+new Chart(revenueTrendCtx, {
+    type: 'line',
+    data: {
+        labels: [...Array(30).keys()].map(i => `Apr ${i+1}`),
+        datasets: [{
+            label: 'Daily Revenue',
+            data: Array.from({length: 30}, () => Math.floor(Math.random() * 2000) + 1500),
+            backgroundColor: 'rgba(16, 185, 129, 0.2)',
+            borderColor: 'rgba(16, 185, 129, 1)',
+            borderWidth: 2,
+            tension: 0.3
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+}
+
+// Service Chart
+const serviceCtx = document.getElementById('service-chart');
+if (serviceCtx) {
+new Chart(serviceCtx, {
+    type: 'doughnut',
+    data: {
+        labels: ['Individual Therapy', 'Couples Therapy', 'Group Sessions', 'Assessments', 'Other'],
+        datasets: [{
+            data: [45, 25, 15, 10, 5],
+            backgroundColor: [
+                'rgba(99, 102, 241, 0.6)',
+                'rgba(52, 211, 153, 0.6)',
+                'rgba(139, 92, 246, 0.6)',
+                'rgba(251, 191, 36, 0.6)',
+                'rgba(236, 72, 153, 0.6)'
+            ]
+        }]
+    }
+});
+}
+
+// Satisfaction Chart
+const satisfactionCtx = document.getElementById('satisfaction-chart');
+if (satisfactionCtx) {
+new Chart(satisfactionCtx, {
+    type: 'bar',
+    data: {
+        labels: ['Therapist Expertise', 'Website Experience', 'Booking Process', 'Facility', 'Client Support'],
+        datasets: [{
+            label: 'Rating (out of 5)',
+            data: [4.9, 4.3, 4.0, 4.6, 4.5],
+            backgroundColor: 'rgba(139, 92, 246, 0.6)'
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true,
+                max: 5
+            }
+        }
+    }
+});
+}
+}
+
+// Calendar functionality
+const prevMonthBtn = document.getElementById('prev-month');
+const nextMonthBtn = document.getElementById('next-month');
+const currentMonthEl = document.getElementById('current-month');
+
+if (prevMonthBtn && nextMonthBtn && currentMonthEl) {
+let currentDate = new Date();
+
+const updateCalendar = () => {
+currentMonthEl.textContent = moment(currentDate).format('MMMM YYYY');
+// In a real implementation, this would fetch appointments for the month
+};
+
+prevMonthBtn.addEventListener('click', () => {
+currentDate = moment(currentDate).subtract(1, 'months').toDate();
+updateCalendar();
+});
+
+nextMonthBtn.addEventListener('click', () => {
+currentDate = moment(currentDate).add(1, 'months').toDate();
+updateCalendar();
+});
+}
+
+// Form submissions
+const forms = {
+'add-user-form': function(data) {
+// Here we'd send the data to the server
+console.log('Adding new user:', data);
+
+// In a real implementation, we'd make a fetch request
+// fetch('/api/users', {
+//     method: 'POST',
+//     headers: { 'Content-Type': 'application/json' },
+//     body: JSON.stringify(data)
+// })
+// .then(response => response.json())
+// .then(result => {
+//     // Handle success, e.g., close modal and refresh list
+// })
+// .catch(error => {
+//     // Handle error
+// });
+
+// Close the modal
+document.getElementById('add-user-modal').classList.add('hidden');
+},
+'add-therapist-form': function(data) {
+console.log('Adding new therapist:', data);
+document.getElementById('add-therapist-modal').classList.add('hidden');
+},
+'add-appointment-form': function(data) {
+console.log('Adding new appointment:', data);
+document.getElementById('add-appointment-modal').classList.add('hidden');
+},
+'add-response-form': function(data) {
+console.log('Adding new chatbot response:', data);
+document.getElementById('add-response-modal').classList.add('hidden');
+},
+'create-survey-form': function(data) {
+console.log('Creating new survey:', data);
+document.getElementById('create-survey-modal').classList.add('hidden');
+},
+'manual-reset-form': function(data) {
+console.log('Manual password reset:', data);
+// Clear form
+document.getElementById('manual-reset-form').reset();
+},
+'general-settings-form': function(data) {
+console.log('Updating general settings:', data);
+// Show success message
+alert('Settings updated successfully!');
+}
+};
+
+Object.keys(forms).forEach(formId => {
+const form = document.getElementById(formId);
+if (form) {
+form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Collect form data
+    const formData = new FormData(form);
+    const data = {};
+    formData.forEach((value, key) => {
+        data[key] = value;
+    });
+    
+    // Call the appropriate handler
+    forms[formId](data);
+});
+}
+});
+
+// Add question button for survey creation
+const addQuestionBtn = document.getElementById('add-question');
+const questionsContainer = document.getElementById('survey-questions');
+
+if (addQuestionBtn && questionsContainer) {
+addQuestionBtn.addEventListener('click', function() {
+const questionCount = questionsContainer.children.length + 1;
+const newQuestion = document.createElement('div');
+newQuestion.className = 'border rounded p-3 bg-gray-50';
+newQuestion.innerHTML = `
+    <div class="flex justify-between mb-2">
+        <span class="font-medium">Question ${questionCount}</span>
+        <button type="button" class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></button>
+    </div>
+    <input class="border rounded w-full py-2 px-3 mb-2" type="text" placeholder="Enter your question" required>
+    <select class="border rounded w-full py-2 px-3">
+        <option value="rating">Rating (1-5)</option>
+        <option value="text">Text Answer</option>
+        <option value="multiple">Multiple Choice</option>
+    </select>
+`;
+questionsContainer.appendChild(newQuestion);
+
+// Add remove functionality to the new question
+const removeBtn = newQuestion.querySelector('button');
+removeBtn.addEventListener('click', function() {
+    newQuestion.remove();
+    // Update question numbers
+    const questions = questionsContainer.children;
+    for (let i = 0; i < questions.length; i++) {
+        questions[i].querySelector('span').textContent = `Question ${i + 1}`;
+    }
+});
+});
+}
+
+// Toggle switches in settings
+const toggles = document.querySelectorAll('input[type="checkbox"].sr-only');
+toggles.forEach(toggle => {
+const dot = toggle.nextElementSibling.nextElementSibling;
+toggle.addEventListener('change', function() {
+if (this.checked) {
+    dot.classList.add('translate-x-6');
+    this.nextElementSibling.classList.add('bg-indigo-600');
+    this.nextElementSibling.classList.remove('bg-gray-300');
+} else {
+    dot.classList.remove('translate-x-6');
+    this.nextElementSibling.classList.remove('bg-indigo-600');
+    this.nextElementSibling.classList.add('bg-gray-300');
+}
+});
+
+// Initialize state
+if (toggle.checked) {
+toggle.nextElementSibling.classList.add('bg-indigo-600');
+toggle.nextElementSibling.classList.remove('bg-gray-300');
+}
+});
+});
+</script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Therapy Admin Dashboard</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<style>
+.sidebar {
+height: 100vh;
+position: fixed;
+}
+.main-content {
+margin-left: 250px;
+}
+@media (max-width: 768px) {
+.sidebar {
+width: 0;
+overflow: hidden;
+transition: 0.3s;
+}
+.main-content {
+margin-left: 0;
+}
+.sidebar.active {
+width: 250px;
+}
+}
+.calendar-day {
+height: 120px;
+overflow-y: auto;
+}
+.appointment {
+font-size: 0.8rem;
+margin-bottom: 2px;
+padding: 2px 4px;
+border-radius: 3px;
+}
+</style>
+</head>
+<body class="bg-gray-100">
+<!-- Sidebar -->
+<div class="sidebar bg-indigo-900 text-white w-64 p-4">
+<div class="flex items-center justify-between mb-8">
+<h1 class="text-xl font-bold">Therapy Admin</h1>
+<button id="mobile-close" class="md:hidden">
+<i class="fas fa-times"></i>
+</button>
+</div>
+<nav>
+<ul>
+<li class="mb-2">
+<a href="#dashboard" class="flex items-center p-2 rounded hover:bg-indigo-700 nav-link active">
+    <i class="fas fa-tachometer-alt mr-3"></i> Dashboard
+</a>
+</li>
+<li class="mb-2">
+<a href="#users" class="flex items-center p-2 rounded hover:bg-indigo-700 nav-link">
+    <i class="fas fa-users mr-3"></i> Users
+</a>
+</li>
+<li class="mb-2">
+<a href="#therapists" class="flex items-center p-2 rounded hover:bg-indigo-700 nav-link">
+    <i class="fas fa-user-md mr-3"></i> Therapists
+</a>
+</li>
+<li class="mb-2">
+<a href="#appointments" class="flex items-center p-2 rounded hover:bg-indigo-700 nav-link">
+    <i class="fas fa-calendar-alt mr-3"></i> Appointments
+</a>
+</li>
+<li class="mb-2">
+<a href="#sales" class="flex items-center p-2 rounded hover:bg-indigo-700 nav-link">
+    <i class="fas fa-chart-line mr-3"></i> Sales
+</a>
+</li>
+<li class="mb-2">
+<a href="#chatbot" class="flex items-center p-2 rounded hover:bg-indigo-700 nav-link">
+    <i class="fas fa-robot mr-3"></i> Chatbot
+</a>
+</li>
+<li class="mb-2">
+<a href="#surveys" class="flex items-center p-2 rounded hover:bg-indigo-700 nav-link">
+    <i class="fas fa-poll mr-3"></i> Survey Analytics
+</a>
+</li>
+<li class="mb-2">
+<a href="#password-resets" class="flex items-center p-2 rounded hover:bg-indigo-700 nav-link">
+    <i class="fas fa-key mr-3"></i> Password Resets
+</a>
+</li>
+<li class="mb-2">
+<a href="#settings" class="flex items-center p-2 rounded hover:bg-indigo-700 nav-link">
+    <i class="fas fa-cog mr-3"></i> Settings
+</a>
+</li>
+</ul>
+</nav>
+</div>
+
+<!-- Mobile Header -->
+<div class="md:hidden bg-white shadow p-4 flex justify-between items-center">
+<button id="mobile-menu">
+<i class="fas fa-bars text-gray-800"></i>
+</button>
+<h1 class="text-lg font-bold">Therapy Admin</h1>
+<div class="relative">
+<img src="/api/placeholder/40/40" alt="Admin" class="rounded-full w-8 h-8">
+</div>
+</div>
+
+<!-- Main Content -->
+<div class="main-content p-6">
+<!-- Dashboard Section -->
+<div id="dashboard-section" class="section active">
+<h2 class="text-2xl font-bold mb-6">Dashboard</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+<div class="bg-white rounded-lg shadow p-4">
+<div class="flex items-center">
+    <div class="rounded-full bg-blue-100 p-3">
+        <i class="fas fa-users text-blue-500"></i>
+    </div>
+    <div class="ml-4">
+        <h3 class="text-gray-500 text-sm">Total Users</h3>
+        <p class="text-2xl font-bold">1,248</p>
+    </div>
+</div>
+<div class="text-green-500 text-sm mt-2">
+    <i class="fas fa-arrow-up"></i> 12% from last month
+</div>
+</div>
+<div class="bg-white rounded-lg shadow p-4">
+<div class="flex items-center">
+    <div class="rounded-full bg-green-100 p-3">
+        <i class="fas fa-user-md text-green-500"></i>
+    </div>
+    <div class="ml-4">
+        <h3 class="text-gray-500 text-sm">Active Therapists</h3>
+        <p class="text-2xl font-bold">42</p>
+    </div>
+</div>
+<div class="text-green-500 text-sm mt-2">
+    <i class="fas fa-arrow-up"></i> 3 new this month
+</div>
+</div>
+<div class="bg-white rounded-lg shadow p-4">
+<div class="flex items-center">
+    <div class="rounded-full bg-purple-100 p-3">
+        <i class="fas fa-calendar-check text-purple-500"></i>
+    </div>
+    <div class="ml-4">
+        <h3 class="text-gray-500 text-sm">Today's Appointments</h3>
+        <p class="text-2xl font-bold">24</p>
+    </div>
+</div>
+<div class="text-yellow-500 text-sm mt-2">
+    <i class="fas fa-minus"></i> Same as yesterday
+</div>
+</div>
+<div class="bg-white rounded-lg shadow p-4">
+<div class="flex items-center">
+    <div class="rounded-full bg-red-100 p-3">
+        <i class="fas fa-dollar-sign text-red-500"></i>
+    </div>
+    <div class="ml-4">
+        <h3 class="text-gray-500 text-sm">Today's Revenue</h3>
+        <p class="text-2xl font-bold">$2,430</p>
+    </div>
+</div>
+<div class="text-green-500 text-sm mt-2">
+    <i class="fas fa-arrow-up"></i> 8% from yesterday
+</div>
+</div>
+</div>
+
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+<div class="bg-white rounded-lg shadow p-4">
+<h3 class="font-bold mb-4">Revenue (Last 7 Days)</h3>
+<canvas id="revenue-chart" height="200"></canvas>
+</div>
+<div class="bg-white rounded-lg shadow p-4">
+<h3 class="font-bold mb-4">Appointments by Therapist</h3>
+<canvas id="therapist-chart" height="200"></canvas>
+</div>
+</div>
+
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<div class="bg-white rounded-lg shadow p-4 lg:col-span-2">
+<div class="flex justify-between items-center mb-4">
+    <h3 class="font-bold">Recent Appointments</h3>
+    <a href="#appointments" class="text-blue-500 text-sm">View All</a>
+</div>
+<div class="overflow-x-auto">
+    <table class="w-full table-auto">
+        <thead>
+            <tr class="bg-gray-100">
+                <th class="px-4 py-2 text-left">Patient</th>
+                <th class="px-4 py-2 text-left">Therapist</th>
+                <th class="px-4 py-2 text-left">Date & Time</th>
+                <th class="px-4 py-2 text-left">Status</th>
+            </tr>
+        </thead>
+        <tbody id="recent-appointments">
+            <tr>
+                <td class="border px-4 py-2">John Doe</td>
+                <td class="border px-4 py-2">Dr. Sarah Johnson</td>
+                <td class="border px-4 py-2">Apr 30, 2025 - 10:00 AM</td>
+                <td class="border px-4 py-2"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs">Completed</span></td>
+            </tr>
+            <tr>
+                <td class="border px-4 py-2">Emily Clark</td>
+                <td class="border px-4 py-2">Dr. Michael Chen</td>
+                <td class="border px-4 py-2">Apr 30, 2025 - 11:30 AM</td>
+                <td class="border px-4 py-2"><span class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">In Progress</span></td>
+            </tr>
+            <tr>
+                <td class="border px-4 py-2">Robert Brown</td>
+                <td class="border px-4 py-2">Dr. Lisa Wong</td>
+                <td class="border px-4 py-2">Apr 30, 2025 - 1:00 PM</td>
+                <td class="border px-4 py-2"><span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs">Upcoming</span></td>
+            </tr>
+            <tr>
+                <td class="border px-4 py-2">Maria Rodriguez</td>
+                <td class="border px-4 py-2">Dr. James Taylor</td>
+                <td class="border px-4 py-2">Apr 30, 2025 - 2:30 PM</td>
+                <td class="border px-4 py-2"><span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs">Upcoming</span></td>
+            </tr>
+            <tr>
+                <td class="border px-4 py-2">David Wilson</td>
+                <td class="border px-4 py-2">Dr. Sarah Johnson</td>
+                <td class="border px-4 py-2">Apr 30, 2025 - 4:00 PM</td>
+                <td class="border px-4 py-2"><span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs">Upcoming</span></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow p-4">
+<div class="flex justify-between items-center mb-4">
+    <h3 class="font-bold">Survey Results</h3>
+    <a href="#surveys" class="text-blue-500 text-sm">View Details</a>
+</div>
+<div class="mb-4">
+    <h4 class="text-sm font-medium text-gray-500 mb-2">Overall Satisfaction</h4>
+    <div class="flex items-center">
+        <div class="w-full bg-gray-200 rounded-full h-2.5">
+            <div class="bg-green-500 h-2.5 rounded-full" style="width: 88%"></div>
+        </div>
+        <span class="ml-2 text-sm font-medium">88%</span>
+    </div>
+</div>
+<div class="mb-4">
+    <h4 class="text-sm font-medium text-gray-500 mb-2">Would Recommend</h4>
+    <div class="flex items-center">
+        <div class="w-full bg-gray-200 rounded-full h-2.5">
+            <div class="bg-blue-500 h-2.5 rounded-full" style="width: 92%"></div>
+        </div>
+        <span class="ml-2 text-sm font-medium">92%</span>
+    </div>
+</div>
+<div class="mb-4">
+    <h4 class="text-sm font-medium text-gray-500 mb-2">Therapist Rating</h4>
+    <div class="flex items-center">
+        <div class="w-full bg-gray-200 rounded-full h-2.5">
+            <div class="bg-purple-500 h-2.5 rounded-full" style="width: 94%"></div>
+        </div>
+        <span class="ml-2 text-sm font-medium">94%</span>
+    </div>
+</div>
+<div class="mb-4">
+    <h4 class="text-sm font-medium text-gray-500 mb-2">Website Experience</h4>
+    <div class="flex items-center">
+        <div class="w-full bg-gray-200 rounded-full h-2.5">
+            <div class="bg-yellow-500 h-2.5 rounded-full" style="width: 85%"></div>
+        </div>
+        <span class="ml-2 text-sm font-medium">85%</span>
+    </div>
+</div>
+<div>
+    <h4 class="text-sm font-medium text-gray-500 mb-2">Booking Process</h4>
+    <div class="flex items-center">
+        <div class="w-full bg-gray-200 rounded-full h-2.5">
+            <div class="bg-indigo-500 h-2.5 rounded-full" style="width: 80%"></div>
+        </div>
+        <span class="ml-2 text-sm font-medium">80%</span>
+    </div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Users Section -->
+<div id="users-section" class="section hidden">
+<div class="flex justify-between items-center mb-6">
+<h2 class="text-2xl font-bold">Users Management</h2>
+<button id="add-user-btn" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">
+<i class="fas fa-plus mr-2"></i> Add New User
+</button>
+</div>
+
+<div class="bg-white rounded-lg shadow overflow-hidden">
+<div class="p-4 border-b flex justify-between items-center">
+<div class="relative">
+    <input type="text" id="user-search" placeholder="Search users..." class="pl-10 pr-4 py-2 border rounded w-64">
+    <i class="fas fa-search text-gray-400 absolute left-3 top-3"></i>
+</div>
+<div class="flex space-x-2">
+    <select id="user-filter" class="border rounded px-3 py-2">
+        <option value="all">All Users</option>
+        <option value="active">Active</option>
+        <option value="inactive">Inactive</option>
+    </select>
+    <select id="user-sort" class="border rounded px-3 py-2">
+        <option value="name">Sort by Name</option>
+        <option value="date">Sort by Date</option>
+        <option value="sessions">Sort by Sessions</option>
+    </select>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full table-auto">
+    <thead>
+        <tr class="bg-gray-100">
+            <th class="px-4 py-2 text-left">Name</th>
+            <th class="px-4 py-2 text-left">Email</th>
+            <th class="px-4 py-2 text-left">Join Date</th>
+            <th class="px-4 py-2 text-left">Sessions</th>
+            <th class="px-4 py-2 text-left">Status</th>
+            <th class="px-4 py-2 text-left">Actions</th>
+        </tr>
+    </thead>
+    <tbody id="users-table">
+        <tr>
+            <td class="border px-4 py-2">John Doe</td>
+            <td class="border px-4 py-2">john.doe@example.com</td>
+            <td class="border px-4 py-2">Jan 15, 2025</td>
+            <td class="border px-4 py-2">8</td>
+            <td class="border px-4 py-2"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs">Active</span></td>
+            <td class="border px-4 py-2">
+                <div class="flex space-x-2">
+                    <button class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit"></i></button>
+                    <button class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></button>
+                    <button class="text-yellow-500 hover:text-yellow-700"><i class="fas fa-key"></i></button>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="border px-4 py-2">Jane Smith</td>
+            <td class="border px-4 py-2">jane.smith@example.com</td>
+            <td class="border px-4 py-2">Feb 22, 2025</td>
+            <td class="border px-4 py-2">12</td>
+            <td class="border px-4 py-2"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs">Active</span></td>
+            <td class="border px-4 py-2">
+                <div class="flex space-x-2">
+                    <button class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit"></i></button>
+                    <button class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></button>
+                    <button class="text-yellow-500 hover:text-yellow-700"><i class="fas fa-key"></i></button>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="border px-4 py-2">Michael Johnson</td>
+            <td class="border px-4 py-2">michael@example.com</td>
+            <td class="border px-4 py-2">Mar 3, 2025</td>
+            <td class="border px-4 py-2">5</td>
+            <td class="border px-4 py-2"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs">Active</span></td>
+            <td class="border px-4 py-2">
+                <div class="flex space-x-2">
+                    <button class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit"></i></button>
+                    <button class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></button>
+                    <button class="text-yellow-500 hover:text-yellow-700"><i class="fas fa-key"></i></button>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="border px-4 py-2">Emily Davis</td>
+            <td class="border px-4 py-2">emily@example.com</td>
+            <td class="border px-4 py-2">Mar 15, 2025</td>
+            <td class="border px-4 py-2">3</td>
+            <td class="border px-4 py-2"><span class="px-2 py-1 bg-gray-100 text-gray-800 rounded-full text-xs">Inactive</span></td>
+            <td class="border px-4 py-2">
+                <div class="flex space-x-2">
+                    <button class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit"></i></button>
+                    <button class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></button>
+                    <button class="text-yellow-500 hover:text-yellow-700"><i class="fas fa-key"></i></button>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="border px-4 py-2">Robert Wilson</td>
+            <td class="border px-4 py-2">robert@example.com</td>
+            <td class="border px-4 py-2">Apr 2, 2025</td>
+            <td class="border px-4 py-2">1</td>
+            <td class="border px-4 py-2"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs">Active</span></td>
+            <td class="border px-4 py-2">
+                <div class="flex space-x-2">
+                    <button class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit"></i></button>
+                    <button class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></button>
+                    <button class="text-yellow-500 hover:text-yellow-700"><i class="fas fa-key"></i></button>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<div class="p-4 border-t flex justify-between items-center">
+<div>
+    <span class="text-sm text-gray-500">Showing <span id="user-count">5</span> of <span id="total-users">1,248</span> users</span>
+</div>
+<div class="flex space-x-1">
+    <button class="px-3 py-1 border rounded text-sm">Previous</button>
+    <button class="px-3 py-1 border rounded bg-indigo-600 text-white text-sm">1</button>
+    <button class="px-3 py-1 border rounded text-sm">2</button>
+    <button class="px-3 py-1 border rounded text-sm">3</button>
+    <button class="px-3 py-1 border rounded text-sm">Next</button>
+</div>
+</div>
+</div>
+
+<!-- Add User Modal -->
+<div id="add-user-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+<div class="bg-white rounded-lg w-full max-w-md p-6">
+<div class="flex justify-between items-center mb-4">
+    <h3 class="text-xl font-bold">Add New User</h3>
+    <button class="close-modal text-gray-500 hover:text-gray-700">
+        <i class="fas fa-times"></i>
+    </button>
+</div>
+<form id="add-user-form">
+    <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="user-name">
+            Full Name
+        </label>
+        <input class="border rounded w-full py-2 px-3" id="user-name" type="text" placeholder="John Doe" required>
+    </div>
+    <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="user-email">
+            Email
+        </label>
+        <input class="border rounded w-full py-2 px-3" id="user-email" type="email" placeholder="john@example.com" required>
+    </div>
+    <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="user-password">
+            Password
+        </label>
+        <input class="border rounded w-full py-2 px-3" id="user-password" type="password" placeholder="********" required>
+    </div>
+    <div class="mb-6">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="user-status">
+            Status
+        </label>
+        <select class="border rounded w-full py-2 px-3" id="user-status">
+            <option value="active">Active</option>
+            <option value="inactive">Inactive</option>
+        </select>
+    </div>
+    <div class="flex justify-end">
+        <button class="close-modal bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded mr-2" type="button">
+            Cancel
+        </button>
+        <button class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded" type="submit">
+            Add User
+        </button>
+    </div>
+</form>
+</div>
+</div>
+</div>
+
+<!-- Therapists Section -->
+<div id="therapists-section" class="section hidden">
+<div class="flex justify-between items-center mb-6">
+<h2 class="text-2xl font-bold">Therapists Management</h2>
+<button id="add-therapist-btn" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">
+<i class="fas fa-plus mr-2"></i> Add New Therapist
+</button>
+</div>
+
+<div class="bg-white rounded-lg shadow overflow-hidden">
+<div class="p-4 border-b flex justify-between items-center">
+<div class="relative">
+    <input type="text" id="therapist-search" placeholder="Search therapists..." class="pl-10 pr-4 py-2 border rounded w-64">
+    <i class="fas fa-search text-gray-400 absolute left-3 top-3"></i>
+</div>
+<div class="flex space-x-2">
+    <select id="therapist-filter" class="border rounded px-3 py-2">
+        <option value="all">All Specialties</option>
+        <option value="cognitive">Cognitive Behavioral</option>
+        <option value="family">Family Therapy</option>
+        <option value="psychodynamic">Psychodynamic</option>
+        <option value="humanistic">Humanistic</option>
+    </select>
+    <select id="therapist-sort" class="border rounded px-3 py-2">
+        <option value="name">Sort by Name</option>
+        <option value="rating">Sort by Rating</option>
+        <option value="clients">Sort by Clients</option>
+    </select>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full table-auto">
+    <thead>
+        <tr class="bg-gray-100">
+            <th class="px-4 py-2 text-left">Name</th>
+            <th class="px-4 py-2 text-left">Specialty</th>
+            <th class="px-4 py-2 text-left">Email</th>
+            <th class="px-4 py-2 text-left">Phone</th>
+            <th class="px-4 py-2 text-left">Clients</th>
+            <th class="px-4 py-2 text-left">Rating</th>
+            <th class="px-4 py-2 text-left">Actions</th>
+        </tr>
+    </thead>
+    <tbody id="therapists-table">
+        <tr>
+            <td class="border px-4 py-2">Dr. Sarah Johnson</td>
+            <td class="border px-4 py-2">Cognitive Behavioral</td>
+            <td class="border px-4 py-2">sarah.johnson@example.com</td>
+            <td class="border px-4 py-2">(555) 123-4567</td>
+            <td class="border px-4 py-2">42</td>
+            <td class="border px-4 py-2">
+                <div class="flex">
+                    <i class="fas fa-star text-yellow-400"></i>
+                    <i class="fas fa-star text-yellow-400"></i>
+                    <i class="fas fa-star text-yellow-400"></i>
+                    <i class="fas fa-star text-yellow-400"></i>
+                    <i class="fas fa-star-half-alt text-yellow-400"></i>
+                    <span class="ml-1">4.5</span>
+                </div>
+            </td>
+            <td class="border px-4 py-2">
+                <div class="flex space-x-2">
+                    <button class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit"></i></button>
+                    <button class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></button>
+                    <button class="text-green-500 hover:text-green-700"><i class="fas fa-calendar-check"></i></button>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="border px-4 py-2">Dr. Michael Chen</td>
+            <td class="border px-4 py-2">Family Therapy</td>
+            <td class="border px-4 py-2">michael.chen@example.com</td>
+            <td class="border px-4 py-2">(555) 234-5678</td>
+            <td class="border px-4 py-2">38</td>
+            <td class="border px-4 py-2">
+                <div class="flex">
+                    <i class="fas fa-star text-yellow-400"></i>
+                    <i class="fas fa-star text-yellow-400"></i>
+                    <i class="fas fa-star text-yellow-400"></i>
+                    <i class="fas fa-star text-yellow-400"></i>
+                    <i class="fas fa-star text-yellow-400"></i>
+                    <span class="ml-1">5.0</span>
+                </div>
+            </td>
+            <td class="border px-4 py-2">
+                <div class="flex space-x-2">
+                    <button class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit"></i></button>
+                    <button class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></button>
+                    <button class="text-green-500 hover:text-green-700"><i class="fas fa-calendar-check"></i></button>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="border px-4 py-2">Dr. Lisa Wong</td>
+            <td class="border px-4 py-2">Psychodynamic</td>
+            <td class="border px-4 py-2">lisa.wong@example.com</td>
+            <td class="border px-4 py-2">(555) 345-6789</td>
+            <td class="border px-4 py-2">29</td>
+            <td class="border px-4 py-2">
+                <div class="flex">
+                    <i class="fas fa-star text-yellow-400"></i>
+                    <i class="fas fa-star text-yellow-400"></i>
+                    <i class="fas fa-star text-yellow-400"></i>
+                    <i class="fas fa-star text-yellow-400"></i>
+                    <i class="far fa-star text-yellow-400"></i>
+                    <span class="ml-1">4.0</span>
+                </div>
+            </td>
+            <td class="border px-4 py-2">
+                <div class="flex space-x-2">
+                    <button class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit"></i></button>
+                    <button class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></button>
+                    <button class="text-green-500 hover:text-green-700"><i class="fas fa-calendar-check"></i></button>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="border px-4 py-2">Dr. James Taylor</td>
+            <td class="border px-4 py-2">Humanistic</td>
+            <td class="border px-4 py-2">james.taylor@example.com</td>
+            <td class="border px-4 py-2">(555) 456-7890</td>
+            <td class="border px-4 py-2">24</td>
+            <td class="border px-4 py-2">
+                <div class="flex">
+                    <i class="fas fa-star text-yellow-400"></i>
+                    <i class="fas fa-star text-yellow-400"></i>
+                    <i class="fas fa-star text-yellow-400"></i>
+                    <i class="fas fa-star text-yellow-400"></i>
+                    <i class="far fa-star text-yellow-400"></i>
+                    <span class="ml-1">4.2</span>
+                </div>
+            </td>
+            <td class="border px-4 py-2">
+                <div class="flex space-x-2">
+                    <button class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit"></i></button>
+                    <button class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></button>
+                    <button class="text-green-500 hover:text-green-700"><i class="fas fa-calendar-check"></i></button>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<div class="p-4 border-t flex justify-between items-center">
+<div>
+    <span class="text-sm text-gray-500">Showing <span id="therapist-count">4</span> of <span id="total-therapists">42</span> therapists</span>
+</div>
+<div class="flex space-x-1">
+    <button class="px-3 py-1 border rounded text-sm">Previous</button>
+    <button class="px-3 py-1 border rounded bg-indigo-600 text-white text-sm">1</button>
+    <button class="px-3 py-1 border rounded text-sm">2</button>
+    <button class="px-3 py-1 border rounded text-sm">3</button>
+    <button class="px-3 py-1 border rounded text-sm">Next</button>
+</div>
+</div>
+</div>
+
+<!-- Add Therapist Modal -->
+<div id="add-therapist-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+<div class="bg-white rounded-lg w-full max-w-md p-6">
+<div class="flex justify-between items-center mb-4">
+    <h3 class="text-xl font-bold">Add New Therapist</h3>
+    <button class="close-modal text-gray-500 hover:text-gray-700">
+        <i class="fas fa-times"></i>
+    </button>
+</div>
+<form id="add-therapist-form">
+    <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="therapist-name">
+            Full Name
+        </label>
+        <input class="border rounded w-full py-2 px-3" id="therapist-name" type="text" placeholder="Dr. John Doe" required>
+    </div>
+    <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="therapist-specialty">
+            Specialty
+        </label>
+        <select class="border rounded w-full py-2 px-3" id="therapist-specialty" required>
+            <option value="">Select a specialty</option>
+            <option value="cognitive">Cognitive Behavioral</option>
+            <option value="family">Family Therapy</option>
+            <option value="psychodynamic">Psychodynamic</option>
+            <option value="humanistic">Humanistic</option>
+            <option value="integrative">Integrative</option>
+            <option value="other">Other</option>
+        </select>
+    </div>
+    <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="therapist-email">
+            Email
+        </label>
+        <input class="border rounded w-full py-2 px-3" id="therapist-email" type="email" placeholder="john@example.com" required>
+    </div>
+    <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="therapist-phone">
+            Phone
+        </label>
+        <input class="border rounded w-full py-2 px-3" id="therapist-phone" type="tel" placeholder="(555) 123-4567" required>
+    </div>
+    <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="therapist-bio">
+            Bio
+        </label>
+        <textarea class="border rounded w-full py-2 px-3" id="therapist-bio" rows="3" placeholder="Brief professional bio..."></textarea>
+    </div>
+    <div class="mb-6">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="therapist-photo">
+            Profile Photo
+        </label>
+        <input class="border rounded w-full py-2 px-3" id="therapist-photo" type="file">
+    </div>
+    <div class="flex justify-end">
+        <button class="close-modal bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded mr-2" type="button">
+            Cancel
+        </button>
+        <button class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded" type="submit">
+            Add Therapist
+        </button>
+    </div>
+</form>
+</div>
+</div>
+</div>
+
+<!-- Appointments Section -->
+<div id="appointments-section" class="section hidden">
+<div class="flex justify-between items-center mb-6">
+<h2 class="text-2xl font-bold">Appointment Calendar</h2>
+<div class="flex space-x-2">
+<button id="prev-month" class="bg-white border border-gray-300 text-gray-700 px-3 py-2 rounded hover:bg-gray-100">
+    <i class="fas fa-chevron-left"></i>
+</button>
+<div id="current-month" class="bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded min-w-max">
+    April 2025
+</div>
+<button id="next-month" class="bg-white border border-gray-300 text-gray-700 px-3 py-2 rounded hover:bg-gray-100">
+    <i class="fas fa-chevron-right"></i>
+</button>
+<button id="add-appointment-btn" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 ml-2">
+    <i class="fas fa-plus mr-2"></i> New Appointment
+</button>
+</div>
+</div>
+
+<div class="bg-white rounded-lg shadow overflow-hidden">
+<div class="grid grid-cols-7 gap-px bg-gray-200">
+<div class="bg-gray-100 p-2 text-center font-semibold">Sun</div>
+<div class="bg-gray-100 p-2 text-center font-semibold">Mon</div>
+<div class="bg-gray-100 p-2 text-center font-semibold">Tue</div>
+<div class="bg-gray-100 p-2 text-center font-semibold">Wed</div>
+<div class="bg-gray-100 p-2 text-center font-semibold">Thu</div>
+<div class="bg-gray-100 p-2 text-center font-semibold">Fri</div>
+<div class="bg-gray-100 p-2 text-center font-semibold">Sat</div>
+</div>
+<div class="grid grid-cols-7 gap-px bg-gray-200" id="calendar-grid">
+<!-- Calendar days will be generated by JS -->
+<div class="bg-gray-50 p-2 min-h-full calendar-day">
+    <div class="text-gray-400 font-semibold">30</div>
+</div>
+<div class="bg-gray-50 p-2 min-h-full calendar-day">
+    <div class="text-gray-400 font-semibold">31</div>
+</div>
+<div class="bg-white p-2 min-h-full calendar-day">
+    <div class="font-semibold">1</div>
+    <div class="appointment bg-blue-100 text-blue-800">9:00 AM - John D.</div>
+    <div class="appointment bg-green-100 text-green-800">11:30 AM - Emily C.</div>
+    <div class="appointment bg-purple-100 text-purple-800">2:00 PM - Robert B.</div>
+</div>
+<div class="bg-white p-2 min-h-full calendar-day">
+    <div class="font-semibold">2</div>
+    <div class="appointment bg-blue-100 text-blue-800">10:00 AM - Jane S.</div>
+    <div class="appointment bg-green-100 text-green-800">1:30 PM - Michael J.</div>
+</div>
+<div class="bg-white p-2 min-h-full calendar-day">
+    <div class="font-semibold">3</div>
+    <div class="appointment bg-blue-100 text-blue-800">9:30 AM - David W.</div>
+    <div class="appointment bg-purple-100 text-purple-800">3:00 PM - Sarah P.</div>
+</div>
+<div class="bg-white p-2 min-h-full calendar-day">
+    <div class="font-semibold">4</div>
+    <div class="appointment bg-blue-100 text-blue-800">11:00 AM - Mark T.</div>
+    <div class="appointment bg-green-100 text-green-800">2:30 PM - Lisa M.</div>
+    <div class="appointment bg-purple-100 text-purple-800">4:30 PM - Chris L.</div>
+</div>
+<div class="bg-white p-2 min-h-full calendar-day">
+    <div class="font-semibold">5</div>
+</div>
+<!-- More calendar days would continue here -->
+</div>
+</div>
+
+<!-- Add Appointment Modal -->
+<div id="add-appointment-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+<div class="bg-white rounded-lg w-full max-w-md p-6">
+<div class="flex justify-between items-center mb-4">
+    <h3 class="text-xl font-bold">Schedule Appointment</h3>
+    <button class="close-modal text-gray-500 hover:text-gray-700">
+        <i class="fas fa-times"></i>
+    </button>
+</div>
+<form id="add-appointment-form">
+    <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="appointment-client">
+            Client
+        </label>
+        <select class="border rounded w-full py-2 px-3" id="appointment-client" required>
+            <option value="">Select a client</option>
+            <option value="1">John Doe</option>
+            <option value="2">Jane Smith</option>
+            <option value="3">Michael Johnson</option>
+            <option value="4">Emily Davis</option>
+            <option value="5">Robert Wilson</option>
+        </select>
+    </div>
+    <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="appointment-therapist">
+            Therapist
+        </label>
+        <select class="border rounded w-full py-2 px-3" id="appointment-therapist" required>
+            <option value="">Select a therapist</option>
+            <option value="1">Dr. Sarah Johnson</option>
+            <option value="2">Dr. Michael Chen</option>
+            <option value="3">Dr. Lisa Wong</option>
+            <option value="4">Dr. James Taylor</option>
+        </select>
+    </div>
+    <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="appointment-date">
+            Date
+        </label>
+        <input class="border rounded w-full py-2 px-3" id="appointment-date" type="date" required>
+    </div>
+    <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="appointment-time">
+            Time
+        </label>
+        <input class="border rounded w-full py-2 px-3" id="appointment-time" type="time" required>
+    </div>
+    <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="appointment-duration">
+            Duration
+        </label>
+        <select class="border rounded w-full py-2 px-3" id="appointment-duration" required>
+            <option value="30">30 minutes</option>
+            <option value="60" selected>1 hour</option>
+            <option value="90">1 hour 30 minutes</option>
+            <option value="120">2 hours</option>
+        </select>
+    </div>
+    <div class="mb-6">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="appointment-notes">
+            Notes
+        </label>
+        <textarea class="border rounded w-full py-2 px-3" id="appointment-notes" rows="3" placeholder="Any special notes or requirements..."></textarea>
+    </div>
+    <div class="flex justify-end">
+        <button class="close-modal bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded mr-2" type="button">
+            Cancel
+        </button>
+        <button class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded" type="submit">
+            Schedule
+        </button>
+    </div>
+</form>
+</div>
+</div>
+</div>
+
+<!-- Sales Section -->
+<div id="sales-section" class="section hidden">
+<h2 class="text-2xl font-bold mb-6">Sales Analytics</h2>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+<div class="bg-white rounded-lg shadow p-4">
+<div class="flex items-center">
+    <div class="rounded-full bg-green-100 p-3">
+        <i class="fas fa-dollar-sign text-green-500"></i>
+    </div>
+    <div class="ml-4">
+        <h3 class="text-gray-500 text-sm">Today's Revenue</h3>
+        <p class="text-2xl font-bold">$2,430</p>
+    </div>
+</div>
+<div class="text-green-500 text-sm mt-2">
+    <i class="fas fa-arrow-up"></i> 8% from yesterday
+</div>
+</div>
+<div class="bg-white rounded-lg shadow p-4">
+<div class="flex items-center">
+    <div class="rounded-full bg-blue-100 p-3">
+        <i class="fas fa-calendar-week text-blue-500"></i>
+    </div>
+    <div class="ml-4">
+        <h3 class="text-gray-500 text-sm">This Week</h3>
+        <p class="text-2xl font-bold">$14,850</p>
+    </div>
+</div>
+<div class="text-green-500 text-sm mt-2">
+    <i class="fas fa-arrow-up"></i> 12% from last week
+</div>
+</div>
+<div class="bg-white rounded-lg shadow p-4">
+<div class="flex items-center">
+    <div class="rounded-full bg-purple-100 p-3">
+        <i class="fas fa-calendar-alt text-purple-500"></i>
+    </div>
+    <div class="ml-4">
+        <h3 class="text-gray-500 text-sm">This Month</h3>
+        <p class="text-2xl font-bold">$58,260</p>
+    </div>
+</div>
+<div class="text-green-500 text-sm mt-2">
+    <i class="fas fa-arrow-up"></i> 5% from last month
+</div>
+</div>
+<div class="bg-white rounded-lg shadow p-4">
+<div class="flex items-center">
+    <div class="rounded-full bg-yellow-100 p-3">
+        <i class="fas fa-user-check text-yellow-500"></i>
+    </div>
+    <div class="ml-4">
+        <h3 class="text-gray-500 text-sm">New Clients</h3>
+        <p class="text-2xl font-bold">42</p>
+    </div>
+</div>
+<div class="text-green-500 text-sm mt-2">
+    <i class="fas fa-arrow-up"></i> 15% from last month
+</div>
+</div>
+</div>
+
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+<div class="bg-white rounded-lg shadow p-4">
+<h3 class="font-bold mb-4">Revenue Trend (Last 30 Days)</h3>
+<canvas id="revenue-trend-chart" height="250"></canvas>
+</div>
+<div class="bg-white rounded-lg shadow p-4">
+<h3 class="font-bold mb-4">Revenue by Service Type</h3>
+<canvas id="service-chart" height="250"></canvas>
+</div>
+</div>
+
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<div class="bg-white rounded-lg shadow p-4 lg:col-span-2">
+<div class="flex justify-between items-center mb-4">
+    <h3 class="font-bold">Recent Transactions</h3>
+    <div class="flex space-x-2">
+        <select id="transaction-filter" class="border rounded px-3 py-1 text-sm">
+            <option value="all">All Transactions</option>
+            <option value="completed">Completed</option>
+            <option value="pending">Pending</option>
+            <option value="refunded">Refunded</option>
+        </select>
+        <button class="bg-indigo-600 text-white px-3 py-1 rounded text-sm hover:bg-indigo-700">
+            <i class="fas fa-download mr-1"></i> Export
+        </button>
+    </div>
+</div>
+<div class="overflow-x-auto">
+    <table class="w-full table-auto">
+        <thead>
+            <tr class="bg-gray-100">
+                <th class="px-4 py-2 text-left">ID</th>
+                <th class="px-4 py-2 text-left">Client</th>
+                <th class="px-4 py-2 text-left">Service</th>
+                <th class="px-4 py-2 text-left">Date</th>
+                <th class="px-4 py-2 text-left">Amount</th>
+                <th class="px-4 py-2 text-left">Status</th>
+            </tr>
+        </thead>
+        <tbody id="transactions-table">
+            <tr>
+                <td class="border px-4 py-2">#TRX-8742</td>
+                <td class="border px-4 py-2">John Doe</td>
+                <td class="border px-4 py-2">Individual Therapy</td>
+                <td class="border px-4 py-2">Apr 30, 2025</td>
+                <td class="border px-4 py-2">$120.00</td>
+                <td class="border px-4 py-2"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs">Completed</span></td>
+            </tr>
+            <tr>
+                <td class="border px-4 py-2">#TRX-8743</td>
+                <td class="border px-4 py-2">Emily Clark</td>
+                <td class="border px-4 py-2">Group Session</td>
+                <td class="border px-4 py-2">Apr 30, 2025</td>
+                <td class="border px-4 py-2">$85.00</td>
+                <td class="border px-4 py-2"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs">Completed</span></td>
+            </tr>
+            <tr>
+                <td class="border px-4 py-2">#TRX-8744</td>
+                <td class="border px-4 py-2">Robert Brown</td>
+                <td class="border px-4 py-2">Couples Therapy</td>
+                <td class="border px-4 py-2">Apr 30, 2025</td>
+                <td class="border px-4 py-2">$150.00</td>
+                <td class="border px-4 py-2"><span class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">Pending</span></td>
+            </tr>
+            <tr>
+                <td class="border px-4 py-2">#TRX-8745</td>
+                <td class="border px-4 py-2">Maria Rodriguez</td>
+                <td class="border px-4 py-2">Individual Therapy</td>
+                <td class="border px-4 py-2">Apr 30, 2025</td>
+                <td class="border px-4 py-2">$120.00</td>
+                <td class="border px-4 py-2"><span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs">Processing</span></td>
+            </tr>
+            <tr>
+                <td class="border px-4 py-2">#TRX-8746</td>
+                <td class="border px-4 py-2">David Wilson</td>
+                <td class="border px-4 py-2">Assessment</td>
+                <td class="border px-4 py-2">Apr 29, 2025</td>
+                <td class="border px-4 py-2">$175.00</td>
+                <td class="border px-4 py-2"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs">Completed</span></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="p-4 border-t flex justify-between items-center">
+    <div>
+        <span class="text-sm text-gray-500">Showing 5 of 156 transactions</span>
+    </div>
+    <div class="flex space-x-1">
+        <button class="px-3 py-1 border rounded text-sm">Previous</button>
+        <button class="px-3 py-1 border rounded bg-indigo-600 text-white text-sm">1</button>
+        <button class="px-3 py-1 border rounded text-sm">2</button>
+        <button class="px-3 py-1 border rounded text-sm">3</button>
+        <button class="px-3 py-1 border rounded text-sm">Next</button>
+    </div>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow p-4">
+<h3 class="font-bold mb-4">Top Performing Therapists</h3>
+<div class="space-y-4">
+    <div class="flex items-center">
+        <img src="/api/placeholder/40/40" alt="Dr. Sarah Johnson" class="rounded-full w-10 h-10">
+        <div class="ml-3 flex-grow">
+            <div class="flex justify-between">
+                <span class="font-medium">Dr. Sarah Johnson</span>
+                <span class="text-green-500 font-medium">$5,840</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2.5 mt-1">
+                <div class="bg-green-500 h-2.5 rounded-full" style="width: 85%"></div>
+            </div>
+        </div>
+    </div>
+    <div class="flex items-center">
+        <img src="/api/placeholder/40/40" alt="Dr. Michael Chen" class="rounded-full w-10 h-10">
+        <div class="ml-3 flex-grow">
+            <div class="flex justify-between">
+                <span class="font-medium">Dr. Michael Chen</span>
+                <span class="text-green-500 font-medium">$4,920</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2.5 mt-1">
+                <div class="bg-green-500 h-2.5 rounded-full" style="width: 72%"></div>
+            </div>
+        </div>
+    </div>
+    <div class="flex items-center">
+        <img src="/api/placeholder/40/40" alt="Dr. Lisa Wong" class="rounded-full w-10 h-10">
+        <div class="ml-3 flex-grow">
+            <div class="flex justify-between">
+                <span class="font-medium">Dr. Lisa Wong</span>
+                <span class="text-green-500 font-medium">$4,350</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2.5 mt-1">
+                <div class="bg-green-500 h-2.5 rounded-full" style="width: 63%"></div>
+            </div>
+        </div>
+    </div>
+    <div class="flex items-center">
+        <img src="/api/placeholder/40/40" alt="Dr. James Taylor" class="rounded-full w-10 h-10">
+        <div class="ml-3 flex-grow">
+            <div class="flex justify-between">
+                <span class="font-medium">Dr. James Taylor</span>
+                <span class="text-green-500 font-medium">$3,820</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2.5 mt-1">
+                <div class="bg-green-500 h-2.5 rounded-full" style="width: 55%"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Chatbot Section -->
+<div id="chatbot-section" class="section hidden">
+<div class="flex justify-between items-center mb-6">
+<h2 class="text-2xl font-bold">Chatbot Management</h2>
+<button id="add-response-btn" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">
+<i class="fas fa-plus mr-2"></i> Add Response
+</button>
+</div>
+
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<div class="bg-white rounded-lg shadow p-4 lg:col-span-2">
+<h3 class="font-bold mb-4">Chatbot Responses</h3>
+<div class="mb-4 flex">
+    <div class="relative flex-grow mr-2">
+        <input type="text" id="response-search" placeholder="Search responses..." class="pl-10 pr-4 py-2 border rounded w-full">
+        <i class="fas fa-search text-gray-400 absolute left-3 top-3"></i>
+    </div>
+    <select id="response-filter" class="border rounded px-3 py-2">
+        <option value="all">All Categories</option>
+        <option value="appointments">Appointments</option>
+        <option value="services">Services</option>
+        <option value="billing">Billing</option>
+        <option value="general">General</option>
+    </select>
+</div>
+<div class="overflow-x-auto">
+    <table class="w-full table-auto">
+        <thead>
+            <tr class="bg-gray-100">
+                <th class="px-4 py-2 text-left">Trigger Keywords</th>
+                <th class="px-4 py-2 text-left">Response</th>
+                <th class="px-4 py-2 text-left">Category</th>
+                <th class="px-4 py-2 text-left">Actions</th>
+            </tr>
+        </thead>
+        <tbody id="responses-table">
+            <tr>
+                <td class="border px-4 py-2">appointment, schedule, book</td>
+                <td class="border px-4 py-2">You can schedule an appointment by clicking the "Book Now" button or calling us at (555) 123-4567.</td>
+                <td class="border px-4 py-2"><span class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">Appointments</span></td>
+                <td class="border px-4 py-2">
+                    <div class="flex space-x-2">
+                        <button class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit"></i></button>
+                        <button class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="border px-4 py-2">cost, price, fee, insurance</td>
+                <td class="border px-4 py-2">Our session fees range from $80-$150 depending on the service. We accept most major insurance plans and offer sliding scale options.</td>
+                <td class="border px-4 py-2"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs">Billing</span></td>
+                <td class="border px-4 py-2">
+                    <div class="flex space-x-2">
+                        <button class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit"></i></button>
+                        <button class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="border px-4 py-2">services, therapy, counseling, treatment</td>
+                <td class="border px-4 py-2">We offer individual therapy, couples counseling, family therapy, group sessions, and specialized treatment programs for various mental health conditions.</td>
+                <td class="border px-4 py-2"><span class="px-2 py-1 bg-purple-100 text-purple-800 rounded-full text-xs">Services</span></td>
+                <td class="border px-4 py-2">
+                    <div class="flex space-x-2">
+                        <button class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit"></i></button>
+                        <button class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="border px-4 py-2">location, address, directions, hours</td>
+                <td class="border px-4 py-2">We're located at 123 Healing Way, Suite 200. Our hours are Monday-Friday 8am-7pm and Saturday 9am-3pm. Free parking is available in the rear lot.</td>
+                <td class="border px-4 py-2"><span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs">General</span></td>
+                <td class="border px-4 py-2">
+                    <div class="flex space-x-2">
+                        <button class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit"></i></button>
+                        <button class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="border px-4 py-2">cancel, reschedule, change appointment</td>
+                <td class="border px-4 py-2">To cancel or reschedule, please call us at (555) 123-4567 at least 24 hours in advance to avoid a cancellation fee.</td>
+                <td class="border px-4 py-2"><span class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">Appointments</span></td>
+                <td class="border px-4 py-2">
+                    <div class="flex space-x-2">
+                        <button class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit"></i></button>
+                        <button class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</div>
+<div class="lg:col-span-1">
+<div class="bg-white rounded-lg shadow p-4 mb-6">
+    <h3 class="font-bold mb-4">Chatbot Stats</h3>
+    <div class="space-y-4">
+        <div>
+            <div class="flex justify-between mb-1">
+                <span class="text-sm font-medium">Conversations Today</span>
+                <span class="text-sm font-medium">86</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2.5">
+                <div class="bg-blue-500 h-2.5 rounded-full" style="width: 75%"></div>
+            </div>
+        </div>
+        <div>
+            <div class="flex justify-between mb-1">
+                <span class="text-sm font-medium">Successful Resolutions</span>
+                <span class="text-sm font-medium">76%</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2.5">
+                <div class="bg-green-500 h-2.5 rounded-full" style="width: 76%"></div>
+            </div>
+        </div>
+        <div>
+            <div class="flex justify-between mb-1">
+                <span class="text-sm font-medium">Transferred to Human</span>
+                <span class="text-sm font-medium">18%</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2.5">
+                <div class="bg-yellow-500 h-2.5 rounded-full" style="width: 18%"></div>
+            </div>
+        </div>
+        <div>
+            <div class="flex justify-between mb-1">
+                <span class="text-sm font-medium">Appointment Bookings</span>
+                <span class="text-sm font-medium">24</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2.5">
+                <div class="bg-purple-500 h-2.5 rounded-full" style="width: 45%"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="bg-white rounded-lg shadow p-4">
+    <h3 class="font-bold mb-4">Most Common Questions</h3>
+    <ol class="list-decimal list-inside space-y-2 text-sm">
+        <li>How much does therapy cost?</li>
+        <li>Do you accept my insurance?</li>
+        <li>How do I schedule an appointment?</li>
+        <li>What are your hours?</li>
+        <li>How do I cancel an appointment?</li>
+        <li>What types of therapy do you offer?</li>
+        <li>How long are therapy sessions?</li>
+        <li>Is therapy confidential?</li>
+        <li>Do you offer telehealth?</li>
+        <li>How do I know which therapist is right for me?</li>
+    </ol>
+</div>
+</div>
+</div>
+
+<!-- Add Response Modal -->
+<div id="add-response-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+<div class="bg-white rounded-lg w-full max-w-md p-6">
+<div class="flex justify-between items-center mb-4">
+    <h3 class="text-xl font-bold">Add Chatbot Response</h3>
+    <button class="close-modal text-gray-500 hover:text-gray-700">
+        <i class="fas fa-times"></i>
+    </button>
+</div>
+<form id="add-response-form">
+    <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="response-keywords">
+            Trigger Keywords (comma separated)
+        </label>
+        <input class="border rounded w-full py-2 px-3" id="response-keywords" type="text" placeholder="appointment, schedule, book" required>
+    </div>
+    <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="response-text">
+            Response Text
+        </label>
+        <textarea class="border rounded w-full py-2 px-3" id="response-text" rows="4" placeholder="Enter the chatbot's response..." required></textarea>
+    </div>
+    <div class="mb-6">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="response-category">
+            Category
+        </label>
+        <select class="border rounded w-full py-2 px-3" id="response-category" required>
+            <option value="">Select a category</option>
+            <option value="appointments">Appointments</option>
+            <option value="services">Services</option>
+            <option value="billing">Billing</option>
+            <option value="general">General</option>
+        </select>
+    </div>
+    <div class="flex justify-end">
+        <button class="close-modal bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded mr-2" type="button">
+            Cancel
+        </button>
+        <button class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded" type="submit">
+            Add Response
+        </button>
+    </div>
+</form>
+</div>
+</div>
+</div>
+
+<!-- Survey Analytics Section -->
+<div id="surveys-section" class="section hidden">
+<div class="flex justify-between items-center mb-6">
+<h2 class="text-2xl font-bold">Survey Analytics</h2>
+<button id="create-survey-btn" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">
+<i class="fas fa-plus mr-2"></i> Create Survey
+</button>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+<div class="bg-white rounded-lg shadow p-4">
+<div class="flex items-center">
+    <div class="rounded-full bg-blue-100 p-3">
+        <i class="fas fa-poll text-blue-500"></i>
+    </div>
+    <div class="ml-4">
+        <h3 class="text-gray-500 text-sm">Total Surveys</h3>
+        <p class="text-2xl font-bold">12</p>
+    </div>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow p-4">
+<div class="flex items-center">
+    <div class="rounded-full bg-green-100 p-3">
+        <i class="fas fa-clipboard-check text-green-500"></i>
+    </div>
+    <div class="ml-4">
+        <h3 class="text-gray-500 text-sm">Responses</h3>
+        <p class="text-2xl font-bold">856</p>
+    </div>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow p-4">
+<div class="flex items-center">
+    <div class="rounded-full bg-purple-100 p-3">
+        <i class="fas fa-percentage text-purple-500"></i>
+    </div>
+    <div class="ml-4">
+        <h3 class="text-gray-500 text-sm">Completion Rate</h3>
+        <p class="text-2xl font-bold">76%</p>
+    </div>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow p-4">
+<div class="flex items-center">
+    <div class="rounded-full bg-yellow-100 p-3">
+        <i class="fas fa-star text-yellow-500"></i>
+    </div>
+    <div class="ml-4">
+        <h3 class="text-gray-500 text-sm">Avg. Rating</h3>
+        <p class="text-2xl font-bold">4.8/5</p>
+    </div>
+</div>
+</div>
+</div>
+
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<div class="bg-white rounded-lg shadow p-4 lg:col-span-2">
+<h3 class="font-bold mb-4">Survey List</h3>
+<div class="overflow-x-auto">
+    <table class="w-full table-auto">
+        <thead>
+            <tr class="bg-gray-100">
+                <th class="px-4 py-2 text-left">Survey Name</th>
+                <th class="px-4 py-2 text-left">Created</th>
+                <th class="px-4 py-2 text-left">Responses</th>
+                <th class="px-4 py-2 text-left">Status</th>
+                <th class="px-4 py-2 text-left">Actions</th>
+            </tr>
+        </thead>
+        <tbody id="surveys-table">
+            <tr>
+                <td class="border px-4 py-2">Post-Therapy Feedback</td>
+                <td class="border px-4 py-2">Jan 15, 2025</td>
+                <td class="border px-4 py-2">342</td>
+                <td class="border px-4 py-2"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs">Active</span></td>
+                <td class="border px-4 py-2">
+                    <div class="flex space-x-2">
+                        <button class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit"></i></button>
+                        <button class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></button>
+                        <button class="text-green-500 hover:text-green-700"><i class="fas fa-chart-bar"></i></button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="border px-4 py-2">Website Experience</td>
+                <td class="border px-4 py-2">Feb 10, 2025</td>
+                <td class="border px-4 py-2">218</td>
+                <td class="border px-4 py-2"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs">Active</span></td>
+                <td class="border px-4 py-2">
+                    <div class="flex space-x-2">
+                        <button class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit"></i></button>
+                        <button class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></button>
+                        <button class="text-green-500 hover:text-green-700"><i class="fas fa-chart-bar"></i></button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="border px-4 py-2">Client Needs Assessment</td>
+                <td class="border px-4 py-2">Mar 5, 2025</td>
+                <td class="border px-4 py-2">165</td>
+                <td class="border px-4 py-2"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs">Active</span></td>
+                <td class="border px-4 py-2">
+                    <div class="flex space-x-2">
+                        <button class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit"></i></button>
+                        <button class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></button>
+                        <button class="text-green-500 hover:text-green-700"><i class="fas fa-chart-bar"></i></button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="border px-4 py-2">Therapist Evaluation</td>
+                <td class="border px-4 py-2">Apr 12, 2025</td>
+                <td class="border px-4 py-2">131</td>
+                <td class="border px-4 py-2"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs">Active</span></td>
+                <td class="border px-4 py-2">
+                    <div class="flex space-x-2">
+                        <button class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit"></i></button>
+                        <button class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></button>
+                        <button class="text-green-500 hover:text-green-700"><i class="fas fa-chart-bar"></i></button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow p-4">
+<h3 class="font-bold mb-4">Overall Satisfaction</h3>
+<canvas id="satisfaction-chart" height="250"></canvas>
+<div class="mt-4">
+    <h4 class="font-medium text-sm mb-2">Key Insights:</h4>
+    <ul class="text-sm space-y-1 list-disc pl-5">
+        <li>91% of clients are satisfied with their therapy experience</li>
+        <li>Therapist expertise is rated highest (4.9/5)</li>
+        <li>Appointment scheduling satisfaction improved 12% this quarter</li>
+        <li>Website experience rating increased after recent updates</li>
+    </ul

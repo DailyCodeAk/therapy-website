@@ -1,0 +1,2859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Holy Cow Therapy</title>
+    <style>
+        :root {
+            --primary: #22a45d;
+            --secondary: #176f3e;
+            --accent: #f59e0b;
+            --light: #f2f2f2;
+            --dark: #333333;
+            --chat-bg: #f8f9fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+            nav ul li {
+                margin-left: 1.5rem;
+            }
+
+                nav ul li a {
+                    color: white;
+                    text-decoration: none;
+                    transition: all 0.3s ease;
+                }
+
+                    nav ul li a:hover {
+                        color: var(--accent);
+                    }
+
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        main {
+            padding-top: 80px;
+            min-height: calc(100vh - 80px - 60px);
+        }
+
+        .tab-content {
+            display: none;
+            padding: 2rem 0;
+        }
+
+            .tab-content.active {
+                display: block;
+                animation: fadeIn 0.5s ease;
+            }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .hero {
+            background: linear-gradient(to right, rgba(92, 158, 173, 0.8), rgba(50, 98, 115, 0.8)), url('/api/placeholder/1200/600') no-repeat center center;
+            background-size: cover;
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+        }
+
+            .hero h1 {
+                font-size: 3rem;
+                margin-bottom: 1rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+                max-width: 600px;
+                margin: 0 auto 2rem;
+            }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+            .btn:hover {
+                background-color: #d88562;
+                transform: translateY(-2px);
+            }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+            .section-title h2 {
+                font-size: 2.5rem;
+                color: var(--secondary);
+                position: relative;
+                display: inline-block;
+                padding-bottom: 0.5rem;
+            }
+
+                .section-title h2::after {
+                    content: '';
+                    position: absolute;
+                    left: 50%;
+                    bottom: 0;
+                    transform: translateX(-50%);
+                    width: 60px;
+                    height: 3px;
+                    background-color: var(--accent);
+                }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+            .service-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            }
+
+        .service-img {
+            height: 200px;
+            background-color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .service-content {
+            padding: 1.5rem;
+        }
+
+            .service-content h3 {
+                color: var(--secondary);
+                margin-bottom: 0.5rem;
+            }
+
+        .therapist-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .therapist-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+            .therapist-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            }
+
+        .therapist-img {
+            height: 200px;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .therapist-content {
+            padding: 1.5rem;
+        }
+
+            .therapist-content h3 {
+                color: var (--secondary);
+                margin-bottom: 0.5rem;
+            }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+            .social-links a {
+                color: var(--secondary);
+                margin: 0 0.5rem;
+                font-size: 1.2rem;
+            }
+
+        /* Booking form styles */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        .booking-form {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+            .form-group label {
+                display: block;
+                margin-bottom: 0.5rem;
+                font-weight: 600;
+                color: var(--secondary);
+            }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+            .form-control:focus {
+                outline: none;
+                border-color: var(--primary);
+            }
+
+        /* Resources tab styles */
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .resource-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+            .resource-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            }
+
+        .resource-img {
+            height: 180px;
+            background-color: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .resource-content {
+            padding: 1.5rem;
+        }
+
+            .resource-content h3 {
+                color: var(--secondary);
+                margin-bottom: 0.5rem;
+            }
+
+        /* Testimonials tab styles */
+        .testimonials-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .testimonial {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+            .testimonial::before {
+                content: '"';
+                position: absolute;
+                top: -20px;
+                left: 20px;
+                font-size: 4rem;
+                color: var(--primary);
+                opacity: 0.2;
+            }
+
+            .testimonial p {
+                font-style: italic;
+                margin-bottom: 1rem;
+            }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+            .testimonial-author img {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                margin-right: 1rem;
+                background-color: #ddd;
+            }
+
+        .author-info h4 {
+            color: var(--secondary);
+            margin-bottom: 0.2rem;
+        }
+
+        /* Contact tab styles */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .contact-info {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+            .contact-info h3 {
+                color: var(--secondary);
+                margin-bottom: 1.5rem;
+            }
+
+        .contact-detail {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-icon {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-right: 1rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .map-container {
+            background-color: #ddd;
+            height: 300px;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        footer {
+            background-color: var(--secondary);
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+
+        /* Responsive styles */
+        /* Authentication styles */
+        .auth-container {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            z-index: 90;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--accent);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .auth-dropdown {
+            position: absolute;
+            top: 45px;
+            right: 0;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            min-width: 200px;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 99;
+        }
+
+            .auth-dropdown.active {
+                display: flex;
+            }
+
+        .auth-dropdown-item {
+            padding: 0.75rem 1rem;
+            text-decoration: none;
+            color: var(--dark);
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+            .auth-dropdown-item:hover {
+                background-color: #f5f5f5;
+            }
+
+        .auth-dropdown-divider {
+            height: 1px;
+            background-color: #e0e0e0;
+            margin: 0.25rem 0;
+        }
+
+        .auth-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0,0,0,0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1200;
+        }
+
+            .auth-modal-overlay.active {
+                display: flex;
+            }
+
+        .auth-modal-container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 450px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        .auth-modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+            opacity: 0.7;
+        }
+
+            .auth-modal-close:hover {
+                opacity: 1;
+            }
+
+        .auth-modal-title {
+            font-size: 1.75rem;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .auth-form-group {
+            margin-bottom: 1.5rem;
+        }
+
+            .auth-form-group label {
+                display: block;
+                margin-bottom: 0.5rem;
+                font-weight: 600;
+                color: var(--secondary);
+            }
+
+        .auth-form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+            .auth-form-control:focus {
+                outline: none;
+                border-color: var(--primary);
+                box-shadow: 0 0 0 2px rgba(34, 164, 93, 0.2);
+            }
+
+        .auth-error {
+            color: #dc3545;
+            font-size: 0.9rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+
+        .auth-btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+            .auth-btn:hover {
+                background-color: var(--secondary);
+            }
+
+        .auth-btn-secondary {
+            background-color: #f8f9fa;
+            color: var(--dark);
+            border: 1px solid #ddd;
+        }
+
+            .auth-btn-secondary:hover {
+                background-color: #e9ecef;
+                color: var(--dark);
+            }
+
+        .auth-form-footer {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+            .auth-form-footer a {
+                color: var(--primary);
+                text-decoration: none;
+                cursor: pointer;
+            }
+
+                .auth-form-footer a:hover {
+                    text-decoration: underline;
+                }
+
+        .auth-social-buttons {
+            display: flex;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .auth-social-btn {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            border: 1px solid #ddd;
+            background-color: white;
+            transition: all 0.2s ease;
+        }
+
+            .auth-social-btn:hover {
+                background-color: #f5f5f5;
+            }
+
+        .auth-or-divider {
+            display: flex;
+            align-items: center;
+            margin: 1.5rem 0;
+        }
+
+            .auth-or-divider::before,
+            .auth-or-divider::after {
+                content: "";
+                flex: 1;
+                height: 1px;
+                background-color: #ddd;
+            }
+
+            .auth-or-divider span {
+                padding: 0 1rem;
+                color: #777;
+                font-size: 0.9rem;
+            }
+
+        /* User welcome message */
+        .user-welcome {
+            display: none; /* Initially hidden until logged in */
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+            .user-welcome.active {
+                display: block;
+            }
+
+        /* Onboarding Survey styles */
+        .onboarding-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0,0,0,0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1100;
+        }
+
+            .onboarding-modal-overlay.active {
+                display: flex;
+            }
+
+        .onboarding-modal-container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 700px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .onboarding-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .onboarding-modal-title {
+            font-size: 1.75rem;
+            color: var(--secondary);
+            margin: 0;
+        }
+
+        .onboarding-progress-container {
+            width: 100%;
+            height: 8px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+
+        .onboarding-progress-bar {
+            height: 100%;
+            background-color: var(--primary);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .onboarding-page {
+            display: none;
+        }
+
+            .onboarding-page.active {
+                display: block;
+            }
+
+        .onboarding-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+
+        .onboarding-skip {
+            text-decoration: underline;
+            color: var(--dark);
+            opacity: 0.7;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 0.9rem;
+        }
+
+            .onboarding-skip:hover {
+                opacity: 1;
+            }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+        }
+
+            .checkbox-item input[type="checkbox"] {
+                margin-right: 0.5rem;
+                width: 18px;
+                height: 18px;
+            }
+
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin: 1.5rem 0;
+        }
+
+        .radio-item {
+            display: flex;
+            align-items: center;
+        }
+
+            .radio-item input[type="radio"] {
+                margin-right: 0.5rem;
+                width: 18px;
+                height: 18px;
+            }
+
+        .tag-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .tag-item {
+            background-color: #f0f0f0;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.2s ease;
+        }
+
+            .tag-item:hover {
+                background-color: #e0e0e0;
+            }
+
+            .tag-item.selected {
+                background-color: var(--primary);
+                color: white;
+            }
+
+        /* Survey modal styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0,0,0,0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+            .modal-overlay.active {
+                display: flex;
+            }
+
+        .modal-container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin: 0;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+
+        .rating-container {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .rating-star {
+            font-size: 1.8rem;
+            color: #ddd;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+            .rating-star:hover, .rating-star.active {
+                color: #FFD700;
+            }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 8px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: var(--primary);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        /* Chatbot styles */
+        .chat-bot-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .chat-bot-button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            font-size: 1.5rem;
+        }
+
+            .chat-bot-button:hover {
+                background-color: var(--secondary);
+                transform: scale(1.05);
+            }
+
+        .chat-window {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 350px;
+            height: 450px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+            .chat-window.active {
+                display: flex;
+                animation: fadeIn 0.3s ease;
+            }
+
+        .chat-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+            .chat-header h3 {
+                margin: 0;
+                font-size: 1.2rem;
+            }
+
+        .close-chat {
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            border-radius: 15px;
+            line-height: 1.4;
+            word-wrap: break-word;
+        }
+
+        .bot-message {
+            background-color: var(--chat-bg);
+            color: var(--dark);
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+
+        .user-message {
+            background-color: var(--primary);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+
+        .chat-input-container {
+            padding: 15px;
+            border-top: 1px solid #eee;
+            display: flex;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            outline: none;
+        }
+
+            .chat-input:focus {
+                border-color: var(--primary);
+            }
+
+        .send-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-left: 10px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+            .send-btn:hover {
+                background-color: var(--secondary);
+            }
+
+        .chat-suggestions {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 10px 15px;
+            gap: 5px;
+        }
+
+        .suggestion-chip {
+            background-color: var(--chat-bg);
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+            .suggestion-chip:hover {
+                background-color: var(--primary);
+                color: white;
+            }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav {
+                margin-top: 1rem;
+            }
+
+                nav ul {
+                    flex-direction: column;
+                    align-items: center;
+                }
+
+                    nav ul li {
+                        margin: 0.5rem 0;
+                    }
+
+            .menu-toggle {
+                display: block;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+
+            nav {
+                display: none;
+                width: 100%;
+            }
+
+                nav.show {
+                    display: block;
+                }
+
+            .hero {
+                padding: 3rem 0;
+            }
+
+                .hero h1 {
+                    font-size: 2rem;
+                }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .chat-window {
+                width: 300px;
+                height: 400px;
+                bottom: 70px;
+                right: 0;
+            }
+
+            .chat-bot-container {
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+
+    <style>
+        #welcomeQuestionnaire.modal-overlay.active {
+            animation: fadeInScale 0.5s ease forwards;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        #welcomeQuestionnaire .modal-container {
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                             width="40"
+                             height="40"
+                             viewBox="0 0 24 24"
+                             fill="none"
+                             stroke="white"
+                             strokeWidth="2"
+                             strokeLinecap="round"
+                             strokeLinejoin="round"
+                             class="icon">
+                            <path d="M12 2C7.58 2 4 5.58 4 10c0 4.08 3.05 7.44 7 7.93V22l3.5-3.5h.02C16.95 17.44 20 14.08 20 10c0-4.42-3.58-8-8-8z"></path>
+                        </svg>
+                        <span style="color: white; font-size: 1.5rem; font-weight: bold;">Holy Cow Therapy</span>
+                    </div>
+                </div>
+                <div class="menu-toggle">☰</div>
+                <nav id="mainNav">
+                    <ul>
+                        <li><a href="#" class="nav-link" data-tab="home">Home</a></li>
+                        <li><a href="#" class="nav-link" data-tab="services">Services</a></li>
+                        <li><a href="#" class="nav-link" data-tab="therapists">Therapists</a></li>
+                        <li><a href="#" class="nav-link" data-tab="holistic">Holistic Therapy</a></li>
+                        <li><a href="#" class="nav-link" data-tab="pricing">Pricing</a></li> <!-- New Pricing Tab -->
+                        <li><a href="#" class="nav-link" data-tab="booking">Book Appointment</a></li>
+                        <li><a href="#" class="nav-link" data-tab="resources">Resources</a></li>
+                        <li><a href="#" class="nav-link" data-tab="testimonials">Testimonials</a></li>
+                        <li><a href="#" class="nav-link" data-tab="contact">Contact</a></li>
+                        <li><a href="/login" class="login-btn">Login</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Home Tab -->
+        <section id="home" class="tab-content active">
+            <div class="hero">
+                <div class="container">
+                    <!-- User welcome message (will show when logged in) -->
+                    <div class="user-welcome" id="userWelcome">
+                        <h2>Welcome back, <span id="welcomeUserName">John</span>!</h2>
+                        <p>It's great to see you again. Ready to continue your wellness journey?</p>
+                    </div>
+
+                    <h1>Your Journey to Wellness Starts Here</h1>
+                    <p>Experience compassionate therapy services tailored to meet your individual needs and help you thrive.</p>
+                    <a href="#" class="btn nav-link" data-tab="booking">Book an Appointment</a>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="section-title">
+                    <h2>Welcome to Holy Cow Therapy</h2>
+                </div>
+                <p>The therapeutic approach of HolyCow Therapy encompasses complete wellness and mental health services. At HolyCow Therapy each experienced therapist maintains a supportive setting where clients can process thoughts and feelings, develop coping skills, and gain personal healing.</p>
+                <p>
+                    Through its practice Holycow Therapy delivers various therapeutic approaches to clients including mindfulness-based therapy, psychodynamic therapy and cognitive-behavioral therapy together with alternative therapeutic solutions. Our organization exists to help people obtain strength that builds resilience for life success. The holistic services we offer make us very satisfied. The services provided will absolutely impress you.
+
+
+                </p>
+                <div style="margin: 2rem 0; text-align: center;">
+                    <a href="#" class="btn nav-link" data-tab="services">Explore Our Services</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Tab -->
+        <section id="services" class="tab-content">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Our Services</h2>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-img">
+                            <img src="https://illinoisrecoverycenter.com/wp-content/uploads/2024/07/individual-therapy-1024x683.jpg" alt="Therapy session" style="width: 600px; height: 200px;">
+                        </div>
+                        <div class="service-content">
+                            <h3>Individual Therapy</h3>
+                            <p>
+                                This sessions addressed your personal requirements through which you learned to handle life challenges and develop coping strategies and grow as a person.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-img">
+                            <img src="https://www.ourrelationship.com/wp-content/uploads/2019/03/shutterstock_635838077-scaled.jpg" alt="Couples Therapy Session" style="width: 600px; height: 200px;">
+                        </div>
+                        <div class="service-content">
+                            <h3>Couples Therapy</h3>
+                            <p>
+                                A supportive environment should help family members address their dynamics as well as resolve conflicts to create healthy relationships between all members.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-img">
+                            <img src="https://familyresourcesinc.org/wp-content/uploads/2020/03/80342737_l-scaled-1200x801.jpg" alt="Family Therapy Session" style= "width: 600px; height: 200px;"> 
+                        </div>
+                        <div class="service-content">
+                            <h3>Family Therapy</h3>
+                            <p>
+                                Creating a supportive environment with family will help members address their relationships while resolving conflicts to establish stronger connections between one another.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-img">
+                            <img src="https://cdn.shopify.com/s/files/1/0595/3096/9256/files/1-What_Is_Mindfulness-based_Stress_Reduction.png?v=1715706740" alt="What Is Mindfulness-Based Stress Reduction" style= "width: 600px; height: 200px;">
+                        </div>
+                        <div class="service-content">
+                            <h3>Mindfulness & Stress Management</h3>
+                            <p>
+                                Mindfulness teaching will provide you with effective methods to decrease stress together with methods to stay present and maintain good health.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-img">
+                            <img src="https://www.recoveryranch.com/wp-content/uploads/2020/04/shutterstock_672909091.jpg" alt="Recovery Ranch Facility" style= "width: 600px; height: 200px;">
+                        </div>
+                        <div class="service-content">
+                            <h3>Trauma Therapy</h3>
+                            <p>
+                                Our facility provides specialized treatment using evidence-based techniques which aids patients in processing traumatic incidents inside a protected setting where care and compassion flourish.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-img">
+                            <img src="https://thumbor.forbes.com/thumbor/fit-in/x/https://www.forbes.com/health/wp-content/uploads/2022/10/TS_call_image.png" alt="Forbes Health Infographic" style= "width: 600px; height: 200px; ">
+                        </div>
+                        <div class="service-content">
+                            <h3>Online Therapy</h3>
+                            <p>
+                                Secure video platform connects patients to therapists for accessible therapy sessions which maintain professional care standards within their home environment.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Therapists Tab -->
+        <section id="therapists" class="tab-content">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Our Therapists</h2>
+                </div>
+                <div class="therapist-grid">
+                    <div class="therapist-card">
+                        <div class="therapist-img">
+                            <img src="https://photos.psychologytoday.com/4fec5a21-46cd-11ea-a6ad-06142c356176/1/320x400.jpeg" alt="Therapist Profile Photo" style= "width: 290px; height: 200px; "> 
+                        </div>
+                        <div class="therapist-content">
+                            <h3>Dr. Sarah Johnson</h3>
+                            <p>Clinical Psychologist</p>
+                            <p>Specializing in anxiety, depression, and trauma recovery with 15 years of experience.</p>
+                            <div class="social-links">
+                                <a href="https://www.psychologytoday.com/us/therapists/sarah-e-johnson-towson-md/81110" target="_blank"><span>PT</span></a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="therapist-card">
+                        <div class="therapist-img">
+                            <img src="https://photos.psychologytoday.com/1a30b3ba-881b-4a8c-941e-211ebf31b30b/1/320x400.png" alt="Therapist Profile Photo" style= "width: 290px; height: 200px; ">
+                        </div>
+                        <div class="therapist-content">
+                            <h3>Michael Rodriguez, LMFT</h3>
+                            <p>Marriage & Family Therapist</p>
+                            <p>Expert in couples therapy, family dynamics, and relationship counseling.</p>
+                            <div class="social-links">
+                                <a href="https://www.linkedin.com/in/michael-rodriguez-42b866171" target="_blank"><span>LN</span></a>
+                                <a href="https://www.lifetocomecounseling.com/" target="_blank"><span>🌐</span></a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="therapist-card">
+                        <div class="therapist-img">
+                            <img src="https://photos.psychologytoday.com/60eea75a-5c89-4268-8e2c-81109305b0d6/6/320x400.jpeg" alt="Therapist Profile Photo" style= "width: 290px; height: 200px; ">
+                        </div>
+                        <div class="therapist-content">
+                            <h3>Dr. Amanda Chen</h3>
+                            <p>Psychotherapist</p>
+                            <p>Specializing in mindfulness, stress management, and cognitive-behavioral therapy.</p>
+                            <div class="social-links">
+                                <a href="https://www.psychologytoday.com/us/therapists/amanda-chen-cincinnati-oh/470227" target="_blank"><span>PT</span></a>
+                                <a href="https://www.embracerecoveryandwellness.com/" target="_blank"><span>🌐</span></a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="therapist-card">
+                        <div class="therapist-img">
+                            <img src="https://photos.psychologytoday.com/3d019b4f-46cd-11ea-a6ad-06142c356176/3/320x400.jpeg" alt="Therapist Profile Photo" style= "width: 290px;  height: 200px; ">
+                        </div>
+                        <div class="therapist-content">
+                            <h3>James Wilson, LCSW</h3>
+                            <p>Clinical Social Worker</p>
+                            <p>Focused on grief counseling, life transitions, and personal growth.</p>
+                            <div class="social-links">
+                                <a href="https://www.psychologytoday.com/us/therapists?search=James+wilson" target="_blank"><span>PT</span></a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Booking Tab -->
+        <section id="booking" class="tab-content">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Book an Appointment</h2>
+                </div>
+                <div class="form-grid">
+                    <div class="booking-form">
+                        <form id="appointmentForm">
+                            <div class="form-group">
+                                <label for="name">Full Name</label>
+                                <input type="text" id="name" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="therapist">Preferred Therapist</label>
+                                <select id="therapist" class="form-control" required>
+                                    <option value="">Select a therapist</option>
+                                    <option value="dr-sarah-johnson">Dr. Sarah Johnson</option>
+                                    <option value="michael-rodriguez">Michael Rodriguez, LMFT</option>
+                                    <option value="dr-amanda-chen">Dr. Amanda Chen</option>
+                                    <option value="james-wilson">James Wilson, LCSW</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="service">Service Type</label>
+                                <select id="service" class="form-control" required>
+                                    <option value="">Select a service</option>
+                                    <option value="individual">Individual Therapy</option>
+                                    <option value="couples">Couples Therapy</option>
+                                    <option value="family">Family Therapy</option>
+                                    <option value="mindfulness">Mindfulness & Stress Management</option>
+                                    <option value="trauma">Trauma Therapy</option>
+                                    <option value="online">Online Therapy</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="date">Preferred Date</label>
+                                <input type="date" id="date" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="time">Preferred Time</label>
+                                <select id="time" class="form-control" required>
+                                    <option value="">Select a time</option>
+                                    <option value="9:00">9:00 AM</option>
+                                    <option value="10:00">10:00 AM</option>
+                                    <option value="11:00">11:00 AM</option>
+                                    <option value="13:00">1:00 PM</option>
+                                    <option value="14:00">2:00 PM</option>
+                                    <option value="15:00">3:00 PM</option>
+                                    <option value="16:00">4:00 PM</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="notes">Additional Notes</label>
+                                <textarea id="notes" class="form-control" rows="4"></textarea>
+                            </div>
+                            <button type="submit" class="btn" style="width: 100%;">Submit Appointment Request</button>
+                        </form>
+                    </div>
+                    <div>
+                        <h3>Appointment Information</h3>
+                        <p>Please fill out the form to request an appointment. Our staff will contact you within 24 hours to confirm your appointment and provide additional information.</p>
+                        <h4>What to Expect</h4>
+                        <p>Your first session will typically be an assessment where your therapist will gather information about your concerns and goals for therapy. This helps create a personalized treatment plan tailored to your needs.</p>
+                        <h4>Cancellation Policy</h4>
+                        <p>We require 24-hour notice for cancellations to avoid a cancellation fee. We understand that emergencies happen and will work with you in those situations.</p>
+                        <h4>Insurance</h4>
+                        <p>We accept most major insurance plans. Please bring your insurance card to your first appointment. If you have questions about coverage, please contact us directly.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resources Tab -->
+        <section id="resources" class="tab-content">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Helpful Resources</h2>
+                </div>
+                <div class="resources-grid">
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="https://www.claritychi.com/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fjmqfvlrp%2Fproduction%2F5d259e4a1dcf5a880e4296e07bc8e86052b5abb7-1200x627.png%3Fw%3D1800%26fit%3Dmax&w=1200&q=65" alt="Clarity Clinic Banner" style= "width: 600px; height: 200px;">
+                        </div>
+                        <div class="resource-content">
+                            <h3>Stress Management Guide</h3>
+                            <p>A comprehensive guide to understanding stress and implementing effective strategies to manage it in daily life.</p>
+                    <a href="https://www.mentalhealth.org.uk/sites/default/files/2023-03/How%20to%20manage%20and%20reduce%20stress.pdf" 
+   class="btn" 
+   style="margin-top: 1rem;" 
+   target="_blank" 
+   rel="noopener noreferrer">
+   📄 View PDF
+</a>
+                        </div>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="https://cdn.memiah.co.uk/uploads/counselling-directory.org.uk/image_gallery/meditation-1717661535-hero.jpg" alt="Mindfulness Practices" style="width: 600px; height: 200px;" >
+                        </div>
+                        <div class="resource-content">
+                            <h3>Mindfulness Practices</h3>
+                            <p>
+                                Master several basic mindfulness practices for daily usage which decrease anxiety symptoms while focusing better.
+                            </p>
+                            <a href="https://www.counselling-directory.org.uk/articles/mindfulness-based-stress-reduction-for-inner-peace-and-resilience" class="btn" style="margin-top: 1rem;" target="_blank">View Article</a>
+
+                        </div>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="https://www.helpguide.org/wp-content/uploads/2023/02/Tips-for-Building-a-Healthy-Relationship-768x512.jpeg" alt="Healthy Relationships" style="width: 600px; height: 200px; " >
+                        </div>
+                        <div class="resource-content">
+                            <h3>Building Healthy Relationships</h3>
+                            <p>Explore key elements of healthy relationships and learn communication skills to strengthen your connections.</p>
+                            <a href="https://www.helpguide.org/relationships/social-connection/relationship-help" 
+   class="btn" 
+   style="margin-top: 1rem;" 
+   target="_blank" 
+   rel="noopener noreferrer">
+   🤝 Relationship Article
+</a>
+
+                        </div>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="https://lirp.cdn-website.com/7b6da791/dms3rep/multi/opt/Untitled+design-1920w.png" alt="Self-Care Toolkit" style="width: 600px; height: 200px; " > 
+                        </div>
+                        <div class="resource-content">
+                            <h3>Self-Care Toolkit</h3>
+                            <p>A collection of self-care practices and activities to help maintain your mental and emotional well-being.</p>
+                            <a href="https://studentaffairs.psu.edu/sites/default/files/HPW_SelfCareToolkit_06_20.pdf" class="btn" style="margin-top: 1rem;" target="_blank" rel="noopener noreferrer" >Access Toolkit</a>
+                        </div>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="https://www.dhs.state.il.us/OneNetLibrary/27894/images/DCC/988-hero-image.jpg" alt="Crisis Resources" style="width: 600px; height: 200px;" >
+                        </div>
+                        <div class="resource-content">
+                            <h3>Crisis Resources</h3>
+                            <p>Important hotlines and resources for immediate support during mental health crises or emergencies.</p>
+                            <a href="https://www.dhs.state.il.us/page.aspx?item=145089" class="btn" style="margin-top: 1rem;" target="_blank" rel="noopener noreferrer" >View Resources</a>
+                        </div>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5HRZLJB_uoML6eWo1Ef2O3Iztq__nANd2tg&s" alt="Therapy FAQ" style="width: 600px; height: 200px;">
+                        </div>
+                        <div class="resource-content">
+                            <h3>Therapy FAQ</h3>
+                            <p>Answers to commonly asked questions about therapy, including what to expect and how to get the most out of your sessions.</p>
+                            <a href="https://openpathcollective.org/open-path-therapists/faq/?gad_source=1&gbraid=0AAAAADkMuPZx2AGXKFkCKGJBZfJRFXTkX&gclid=Cj0KCQjwzrzABhD8ARIsANlSWNM21Dfn7SN590_V22pPYY9WVQCzOmP7cQK3ObjcvSGdN4DqDsadPg8aAncTEALw_wcB" class="btn" style="margin-top: 1rem;" target="_blank" rel="noopener noreferrer" >Read FAQ</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Tab -->
+        <section id="testimonials" class="tab-content">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Client Testimonials</h2>
+                </div>
+                <div class="testimonials-container">
+                    <div class="testimonial">
+                        <p>"Working under Dr. Sarah has been an unforgettable experience. Through the combination of her compassionate nature and astute advising Dr. Sarah assisted me through a turbulent period. Her support has allowed me to develop daily used skills which I still apply thanks to her."</p>
+                        <div class="testimonial-author">
+                            <img src="https://cdn2.nbcuni.com/NBCUniversal/2025-01/Rebecca%20Kutler.jpg?VersionId=.lP7Ecl8EK1pKMG8JUZFsegDefAOq_J." alt="Client" style="width: 200px; height: 200px;" >
+                            <div class="author-info">
+                                <h4>Rebecca M.</h4>
+                                <p>Client for 8 months</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial">
+                        <p>"Through his experience in couples therapy Michael saved our relationship from breaking apart. Through his approach he established a protected environment that allowed both of us to speak freely while developing genuine listening skills. The communication tools which he taught us allow our relationship to keep getting stronger."</p>
+                        <div class="testimonial-author">
+                            <img src="https://www.usanetwork.com/sites/usablog/files/styles/scale_862/public/2022/04/ti-season-2-couple-gavin-and-esonica.jpg" alt="Client" style="width: 200px; height: 200px;" >
+                            <div class="author-info">
+                                <h4>David & Lisa T.</h4>
+                                <p>Clients for 6 months</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial">
+                        <p>"My initial doubt about using online therapy vanished when I worked with Dr. Amanda who created a comfortable environment that brought successful outcomes. Through her mindfulness methods she has provided me with techniques to efficiently handle my anxiety that seemed impossible before. I highly recommend her services."</p>
+                        <div class="testimonial-author">
+                            <img src="data:image/jpeg;base64,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" alt="Client" style="width: 200px; height: 200px;">
+                            <div class="author-info">
+                                <h4>James K.</h4>
+                                <p>Client for 4 months</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Tab -->
+        <section id="contact" class="tab-content">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Contact Us</h2>
+                </div>
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h3>Get in Touch</h3>
+                        <div class="contact-detail">
+                            <span class="contact-icon">📍</span>
+                            <div>
+                                <p>342 HolyCow Therapy Lane<br> Sauk Trail, IL 60471</p>
+                            </div>
+                        </div>
+                        <div class="contact-detail">
+                            <span class="contact-icon">📞</span>
+                            <div>
+                                <p>(312) 123-4567</p>
+                            </div>
+                        </div>
+                        <div class="contact-detail">
+                            <span class="contact-icon">✉️</span>
+                            <div>
+                                <p>info@holycowtherapy.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-detail">
+                            <span class="contact-icon">🕒</span>
+                            <div>
+                                <p>
+                                    <strong>Office Hours:</strong><br>
+                                    Monday - Friday: 9am - 6pm<br>
+                                    Saturday: 10am - 3pm<br>
+                                    Sunday: Closed
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="booking-form">
+                            <h3>Send Us a Message</h3>
+                            <form id="contactForm">
+                                <div class="form-group">
+                                    <label for="contactName">Full Name</label>
+                                    <input type="text" id="contactName" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contactEmail">Email Address</label>
+                                    <input type="email" id="contactEmail" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contactPhone">Phone Number</label>
+                                    <input type="tel" id="contactPhone" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="contactSubject">Subject</label>
+                                    <input type="text" id="contactSubject" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contactMessage">Message</label>
+                                    <textarea id="contactMessage" class="form-control" rows="5" required></textarea>
+                                </div>
+                                <button type="submit" class="btn" style="width: 100%;">Send Message</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="map-container" style="margin-top: 2rem;">
+                    <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2968.394448663634!2d-87.7906300845533!3d41.48353787925432!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880e11b44247d991%3A0x4bcf35c92f807214!2sBlue%20Compass%20Psychotherapy%20%26%20EMDR!5e0!3m2!1sen!2sus!4v1714333105500!5m2!1sen!2sus"
+                    width="900"
+                    height="300"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                  ></iframe>
+                  
+                </div>
+            </div>
+        </section>
+
+        <!-- Holistic Therapy Tab -->
+        <section id="holistic" class="tab-content">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Physical & Holistic Therapy</h2>
+                </div>
+
+                <div class="row" style="display: flex; flex-wrap: wrap; gap: 2rem; margin-bottom: 3rem;">
+                    <div style="flex: 1; min-width: 300px;">
+                        <h3 style="color: var(--secondary); margin-bottom: 1rem;">Our Holistic Approach</h3>
+                        <p>At Wellness Therapy Center, we believe in treating the whole person—mind, body, and spirit. Our holistic therapy programs integrate traditional psychological approaches with physical wellness practices to create comprehensive healing experiences.</p>
+                        <p>Our physical and holistic therapies recognize that mental and physical health are deeply interconnected. By addressing both dimensions simultaneously, we help clients achieve more complete and lasting wellness.</p>
+                    </div>
+                    <div style="flex: 1; min-width: 300px;">
+                        <div style="background-color: #f8f9fa; padding: 1.5rem; border-radius: 8px; height: 100%;">
+                            <h4 style="color: var(--primary); margin-bottom: 1rem;">Benefits of Holistic Therapy</h4>
+                            <ul style="list-style-type: none; padding-left: 0;">
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: center;">
+                                    <span style="color: var(--accent); margin-right: 0.5rem;">✓</span> Reduced stress and anxiety
+                                </li>
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: center;">
+                                    <span style="color: var(--accent); margin-right: 0.5rem;">✓</span> Improved physical well-being
+                                </li>
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: center;">
+                                    <span style="color: var(--accent); margin-right: 0.5rem;">✓</span> Enhanced mind-body connection
+                                </li>
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: center;">
+                                    <span style="color: var(--accent); margin-right: 0.5rem;">✓</span> Better sleep quality
+                                </li>
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: center;">
+                                    <span style="color: var(--accent); margin-right: 0.5rem;">✓</span> Increased emotional resilience
+                                </li>
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: center;">
+                                    <span style="color: var(--accent); margin-right: 0.5rem;">✓</span> Greater sense of balance and wholeness
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-img">
+                            <iframe style="width: 600px; height: 200px;" src="https://www.youtube.com/embed/W6-rH_dxnro?si=bYTwTwo7ZnGFzwXV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    <div class="service-content">
+                        <h3>Yoga Therapy</h3>
+                        <p>Our therapeutic yoga sessions combine gentle movement, breathing techniques, and meditation to promote physical strength, emotional balance, and mental clarity.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <iframe width="1300" height="200" src="https://www.youtube.com/embed/kgg5Mw0TJJk?si=HO0apPOTz6dC550A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    <div class="service-content">
+                        <h3>Massage Therapy</h3>
+                        <p>Professional massage therapy to relieve physical tension, improve circulation, and promote deep relaxation that complements psychological treatments.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <iframe width="1200" height="200" src="https://www.youtube.com/embed/eF9LcJaC9QE?si=Vg0gKlbBQeNAx_Ie" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    <div class="service-content">
+                        <h3>Nutritional Counseling</h3>
+                        <p>Learn how diet affects mental health and develop personalized eating plans that support both physical and psychological well-being.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <iframe width="1200" height="200" src="https://www.youtube.com/embed/MKdYKHX_tPI?si=arcEJarcx3Mr-AKf" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    <div class="service-content">
+                        <h3>Biofeedback</h3>
+                        <p>Using technology to gain awareness of physiological functions, helping you develop control over bodily processes usually considered involuntary.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <iframe width="1200" height="200" src="https://www.youtube.com/embed/qy34LAXF-R0?si=OgoE65zPWe9UILzq" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    <div class="service-content">
+                        <h3>Movement Therapy</h3>
+                        <p>Structured physical activities designed to improve mood, reduce anxiety, and build confidence through embodied movement experiences.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <iframe width="1200" height="200" src="https://www.youtube.com/embed/5KZcE94tOyE?si=S4xbEShVJDI2pq3S" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> 
+                    </div>
+                    <div class="service-content">
+                        <h3>Sleep Therapy</h3>
+                        <p>Evidence-based techniques to improve sleep quality and establish healthy sleep patterns that support mental health and physical recovery.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 4rem; margin-bottom: 4rem;">
+                <div class="section-title">
+                    <h2>Online Physical Therapy</h2>
+                </div>
+
+                <div style="background-color: white; border-radius: 8px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); padding: 2rem; margin-bottom: 2rem;">
+                    <div style="display: flex; flex-wrap: wrap; gap: 2rem; align-items: center;">
+                        <div style="flex: 1; min-width: 300px;">
+                            <h3 style="color: var(--secondary); margin-bottom: 1rem;">Remote Guided Physical Therapy</h3>
+                            <p>Experience professional physical therapy from the comfort of your home with our innovative remote guidance program. Our certified physical therapists work with you in real-time through secure video sessions, providing expert instruction and feedback while you use your own equipment.</p>
+                            <p>Whether you're recovering from an injury, managing chronic pain, or working to improve your overall physical fitness, our personalized approach ensures you receive the same quality care as our in-person sessions.</p>
+                            <div style="margin-top: 1.5rem;">
+                                <a href="#" class="btn nav-link" data-tab="booking" style="margin-right: 1rem;">Schedule Session</a>
+                                <a href="https://ppsapta.org/sites/pps/files/pps_files/pdfs/Physical%20Therapy%20Equipment%20Checklist.pdf"  class="btn" 
+                                style="margin-top: 1rem;" 
+                                target="_blank" 
+                                rel="noopener noreferrer">
+                                 Equipment Guide
+                             </a>
+                            </div>
+                        </div>
+                        <div style="flex: 1; min-width: 300px; background-color: #f8f9fa; padding: 1.5rem; border-radius: 8px;">
+                            <h4 style="color: var(--primary); margin-bottom: 1rem;">How It Works</h4>
+                            <ol style="padding-left: 1.5rem;">
+                                <li style="margin-bottom: 0.8rem;">
+                                    <strong>Initial Assessment:</strong> Complete a thorough evaluation to establish your baseline and goals.
+                                </li>
+                                <li style="margin-bottom: 0.8rem;">
+                                    <strong>Equipment Setup:</strong> Our therapist will help you properly set up your home equipment.
+                                </li>
+                                <li style="margin-bottom: 0.8rem;">
+                                    <strong>Live Sessions:</strong> Connect via our secure video platform for real-time guidance.
+                                </li>
+                                <li style="margin-bottom: 0.8rem;">
+                                    <strong>Progress Tracking:</strong> Monitor improvements through our digital tracking system.
+                                </li>
+                                <li style="margin-bottom: 0.8rem;">
+                                    <strong>Ongoing Support:</strong> Access to resources and between-session support.
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem;">
+                    <div class="service-card" style="height: 100%;">
+                        <div class="service-img" style="position: relative;">
+                            <span style="font-size: 3rem;">
+                                <img src="https://propelphysiotherapy.com/wp-content/uploads/2018/11/body-weight-support-treadmill-training-propel-physiotherapy-etobicoke-clinic-e1572359183322.jpg" alt="Treadmill Therapy" style="width: 330px; height: 220px;">
+                              </span>
+                              
+                            <div style="position: absolute; top: 10px; right: 10px; background-color: var(--accent); color: white; padding: 5px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: bold;">POPULAR</div>
+                        </div>
+                        <div class="service-content">
+                            <h3>Treadmill Therapy</h3>
+                            <p>Guided sessions using your home treadmill to improve cardiovascular health, build endurance, and enhance mobility. Our therapists create customized programs for walking or running with proper form and technique.</p>
+                            <h4 style="color: var(--primary); margin-top: 1rem; font-size: 1rem;">Equipment Needed:</h4>
+                            <ul style="list-style-type: none; padding-left: 0;">
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: center;">
+                                    <span style="color: var(--secondary); margin-right: 0.5rem;">•</span> Home treadmill (any model)
+                                </li>
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: center;">
+                                    <span style="color: var(--secondary); margin-right: 0.5rem;">•</span> Device with camera (laptop/tablet)
+                                </li>
+                                <li style="display: flex; align-items: center;">
+                                    <span style="color: var(--secondary); margin-right: 0.5rem;">•</span> Stable internet connection
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="service-card" style="height: 100%;">
+                        <div class="service-img">
+                            <img src="https://blog.ringside.com/wp-content/uploads/2018/10/man-using-resistance-band.png" alt="Resistance Band Training" style="width: 330px; height: 200px;">
+                        </span>
+                        </div>
+                        <div class="service-content">
+                            <h3>Resistance Band Training</h3>
+                            <p>Comprehensive strength and flexibility training using stretch bands and resistance equipment. Ideal for targeted muscle groups, joint mobility, and rehabilitation exercises.</p>
+                            <h4 style="color: var(--primary); margin-top: 1rem; font-size: 1rem;">Equipment Needed:</h4>
+                            <ul style="list-style-type: none; padding-left: 0;">
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: center;">
+                                    <span style="color: var (--secondary); margin-right: 0.5rem;">•</span> Set of resistance bands (light/medium/heavy)
+                                </li>
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: center;">
+                                    <span style="color: var(--secondary); margin-right: 0.5rem;">•</span> Door anchor (recommended)
+                                </li>
+                                <li style="display: flex; align-items: center;">
+                                    <span style="color: var(--secondary); margin-right: 0.5rem;">•</span> Exercise mat
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="service-card" style="height: 100%;">
+                        <div class="service-img">
+                            <img src="https://www.hackensackmeridianhealth.org/-/media/project/hmh/hmh/public/healthu/healthu-images/education-stories/2022/04/2022-04-01.jpg?h=2000&iar=0&w=3000&hash=E5E3BA02506BC6AD327E427B2A0F4933" alt="Resistance Band Training" style="width: 330px; height: 200px;">
+                        </div>
+                        <div class="service-content">
+                            <h3>Therapeutic Device Integration</h3>
+                            <p>Expert guidance on using specialized therapy devices such as TENS units, massage tools, or rehabilitation equipment. Our therapists help you maximize the benefits of your devices with proper technique.</p>
+                            <h4 style="color: var(--primary); margin-top: 1rem; font-size: 1rem;">Compatible Devices:</h4>
+                            <ul style="list-style-type: none; padding-left: 0;">
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: center;">
+                                    <span style="color: var(--secondary); margin-right: 0.5rem;">•</span> TENS/EMS units
+                                </li>
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: center;">
+                                    <span style="color: var(--secondary); margin-right: 0.5rem;">•</span> Compression devices
+                                </li>
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: center;">
+                                    <span style="color: var(--secondary); margin-right: 0.5rem;">•</span> Massage guns/rollers
+                                </li>
+                                <li style="display: flex; align-items: center;">
+                                    <span style="color: var(--secondary); margin-right: 0.5rem;">•</span> Balance equipment
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background-color: var(--primary); color: white; padding: 2rem; border-radius: 8px; margin-top: 2rem; display: flex; flex-wrap: wrap; align-items: center; gap: 2rem;">
+                    <div style="flex: 2; min-width: 300px;">
+                        <h3 style="margin-bottom: 1rem;">Virtual Assessment</h3>
+                        <p>Not sure which online physical therapy program is right for you? Schedule a free 15-minute virtual assessment with one of our physical therapists to discuss your needs and goals.</p>
+                    </div>
+                    <div style="flex: 1; min-width: 200px; text-align: center;">
+                        <a href="#" class="btn" style="background-color: white; color: var(--primary); padding: 0.8rem 1.5rem; font-weight: bold;">Book Free Assessment</a>
+                    </div>
+                </div>
+
+                <div style="margin-top: 3rem;">
+                    <div class="section-title">
+                        <h3>Remote Physical Therapy FAQ</h3>
+                    </div>
+
+                    <div style="background-color: white; border-radius: 8px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); padding: 2rem;">
+                        <div style="margin-bottom: 1.5rem;">
+                            <h4 style="color: var(--secondary); margin-bottom: 0.5rem;">Is online physical therapy as effective as in-person sessions?</h4>
+                            <p>Research shows that properly conducted online physical therapy can be just as effective as in-person therapy for many conditions. Our therapists are specially trained in remote guidance techniques to ensure you receive optimal care.</p>
+                        </div>
+
+                        <div style="margin-bottom: 1.5rem;">
+                            <h4 style="color: var(--secondary); margin-bottom: 0.5rem;">What if I don't have all the recommended equipment?</h4>
+                            <p>Our therapists are skilled at adapting exercises using common household items. During your initial assessment, we'll inventory what you have available and customize your program accordingly. We can also suggest affordable equipment options if needed.</p>
+                        </div>
+
+                        <div style="margin-bottom: 1.5rem;">
+                            <h4 style="color: var(--secondary); margin-bottom: 0.5rem;">How do you ensure proper form and technique remotely?</h4>
+                            <p>We use multi-angle viewing when possible and provide detailed verbal cues. Our therapists are experts at visual assessment and can quickly spot and correct form issues. We also use video recordings when helpful for more complex movements.</p>
+                        </div>
+
+                        <div>
+                            <h4 style="color: var(--secondary); margin-bottom: 0.5rem;">Is insurance accepted for online physical therapy?</h4>
+                            <p>Many insurance providers now cover telehealth physical therapy sessions. We can verify your benefits prior to beginning treatment. We also offer affordable self-pay options and packages for those without coverage.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="#" class="btn nav-link" data-tab="booking">Schedule a Holistic Therapy Session</a>
+            </div>
+            </div>
+        </section>
+
+        <!-- Pricing Tab -->
+        <section id="pricing" class="tab-content">
+    <div class="container">
+        <div class="section-title">
+            <h2>Our Pricing</h2>
+        </div>
+
+        <div class="pricing-intro">
+            <p>At Holy Cow Therapy, we believe that mental health care should be accessible to everyone. We offer a variety of pricing options to meet your needs, including insurance coverage, self-pay rates, and sliding scale options for qualifying individuals.</p>
+        </div>
+
+        <div class="discount-banner" style="background-color: #f8d7da; color: #721c24; padding: 1rem; border-radius: 8px; text-align: center; font-weight: bold; margin-bottom: 2rem;">
+            🌟 New Client Special: Save 15% on your first 3 sessions when you book before May 31st, 2025! 🌟
+        </div>
+
+        <div class="pricing-toggle" style="display: flex; justify-content: center; align-items: center; margin-bottom: 3rem;">
+            <span class="toggle-option monthly active" style="cursor: pointer; font-weight: bold; margin-right: 1rem;">Pay Per Session</span>
+            <div class="toggle-slider monthly" id="pricingToggle" style="width: 60px; height: 30px; background-color: #ddd; border-radius: 15px; position: relative; cursor: pointer;">
+                <div class="toggle-button" style="width: 24px; height: 24px; background-color: #22a45d; border-radius: 50%; position: absolute; top: 3px; left: 3px; transition: all 0.3s;"></div>
+            </div>
+            <span class="toggle-option annual" style="cursor: pointer; font-weight: bold; margin-left: 1rem;">Package Pricing (Save 10%)</span>
+        </div>
+
+        <div class="pricing-plans" id="monthlyPlans" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+            <div class="pricing-card" style="background-color: white; border-radius: 8px; box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1); padding: 2rem; text-align: center; transition: transform 0.3s;">
+                <div class="pricing-header" style="margin-bottom: 1rem;">
+                    <h3 style="color: #176f3e;">Individual Therapy</h3>
+                    <div class="pricing-price" style="font-size: 2rem; font-weight: bold; color: #22a45d;">$150</div>
+                    <div class="pricing-period" style="color: #666;">per 50-minute session</div>
+                </div>
+                <div class="pricing-body" style="margin-bottom: 1.5rem;">
+                    <ul class="pricing-features" style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 0.5rem;"><span style="color: #22a45d; margin-right: 0.5rem;">✓</span> One-on-one therapy with licensed therapist</li>
+                        <li style="margin-bottom: 0.5rem;"><span style="color: #22a45d; margin-right: 0.5rem;">✓</span> Personalized treatment plan</li>
+                        <li style="margin-bottom: 0.5rem;"><span style="color: #22a45d; margin-right: 0.5rem;">✓</span> Available in-person or online</li>
+                        <li style="margin-bottom: 0.5rem;"><span style="color: #22a45d; margin-right: 0.5rem;">✓</span> Flexible scheduling options</li>
+                        <li><span style="color: #22a45d; margin-right: 0.5rem;">✓</span> Access to therapist resources</li>
+                    </ul>
+                </div>
+                <div class="pricing-footer">
+                    <a href="#" class="btn nav-link" data-tab="booking" style="background-color: #22a45d; color: white; padding: 0.8rem 1.5rem; border-radius: 4px; text-decoration: none; font-weight: bold;">Book Now</a>
+                </div>
+        </div>
+
+            <div class="pricing-card popular" style="background-color: white; border-radius: 8px; box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1); padding: 2rem; text-align: center; border: 2px solid #f59e0b; position: relative; transition: transform 0.3s;">
+                <span class="popular-badge" style="background-color: #f59e0b; color: white; font-size: 0.8rem; font-weight: bold; padding: 0.3rem 1rem; border-radius: 20px; position: absolute; top: -12px; left: 50%; transform: translateX(-50%);">MOST POPULAR</span>
+                <div class="pricing-header" style="margin-bottom: 1rem;">
+                    <h3 style="color: #f59e0b;">Couples Therapy</h3>
+                    <div class="pricing-price" style="font-size: 2rem; font-weight: bold; color: #f59e0b;">$180</div>
+                    <div class="pricing-period" style="color: #666;">per 60-minute session</div>
+                </div>
+                <div class="pricing-body" style="margin-bottom: 1.5rem;">
+                    <ul class="pricing-features" style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 0.5rem;"><span style="color: #f59e0b; margin-right: 0.5rem;">✓</span> Therapy for you and your partner</li>
+                        <li style="margin-bottom: 0.5rem;"><span style="color: #f59e0b; margin-right: 0.5rem;">✓</span> Specialized relationship counseling</li>
+                        <li style="margin-bottom: 0.5rem;"><span style="color: #f59e0b; margin-right: 0.5rem;">✓</span> Communication skill development</li>
+                        <li style="margin-bottom: 0.5rem;"><span style="color: #f59e0b; margin-right: 0.5rem;">✓</span> Conflict resolution techniques</li>
+                        <li><span style="color: #f59e0b; margin-right: 0.5rem;">✓</span> Available in-person or online</li>
+                    </ul>
+                </div>
+                <div class="pricing-footer">
+                    <a href="#" class="btn nav-link" data-tab="booking" style="background-color: #f59e0b; color: white; padding: 0.8rem 1.5rem; border-radius: 4px; text-decoration: none; font-weight: bold;">Book Now</a>
+                </div>
+        </div>
+
+            <div class="pricing-card" style="background-color: white; border-radius: 8px; box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1); padding: 2rem; text-align: center; transition: transform 0.3s;">
+                <div class="pricing-header" style="margin-bottom: 1rem;">
+                    <h3 style="color: #176f3e;">Family Therapy</h3>
+                    <div class="pricing-price" style="font-size: 2rem; font-weight: bold; color: #22a45d;">$200</div>
+                    <div class="pricing-period" style="color: #666;">per 75-minute session</div>
+                </div>
+                <div class="pricing-body" style="margin-bottom: 1.5rem;">
+                    <ul class="pricing-features" style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 0.5rem;"><span style="color: #22a45d; margin-right: 0.5rem;">✓</span> Therapy for the whole family</li>
+                        <li style="margin-bottom: 0.5rem;"><span style="color: #22a45d; margin-right: 0.5rem;">✓</span> Improved family dynamics</li>
+                        <li style="margin-bottom: 0.5rem;"><span style="color: #22a45d; margin-right: 0.5rem;">✓</span> Conflict resolution strategies</li>
+                        <li style="margin-bottom: 0.5rem;"><span style="color: #22a45d; margin-right: 0.5rem;">✓</span> Parenting support and guidance</li>
+                        <li><span style="color: #22a45d; margin-right: 0.5rem;">✓</span> Available in-person or online</li>
+                    </ul>
+                </div>
+                <div class="pricing-footer">
+                    <a href="#" class="btn nav-link" data-tab="booking" style="background-color: #22a45d; color: white; padding: 0.8rem 1.5rem; border-radius: 4px; text-decoration: none; font-weight: bold;">Book Now</a>
+                </div>
+            </div>
+        </div>
+            
+        <div class="price-notes" style="text-align: center; font-size: 0.9rem; color: #666; margin-top: 2rem;">
+            * All prices are in USD. Packages must be used within 3 months of purchase. Cancellation policy applies.
+        </div>
+    </div>
+</section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Holy Cow Therapy. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Chatbot Interface -->
+    <div class="chat-bot-container">
+        <div class="chat-bot-button" id="chatBotButton">
+            <span>💬</span>
+        </div>
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <h3>Holy Cow Assistant</h3>
+                <span class="close-chat" id="closeChat">✕</span>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot-message">
+                    Hello! I'm your Holy Cow Assistant. How can I help you today?
+                </div>
+            </div>
+            <div class="chat-suggestions" id="chatSuggestions">
+                <div class="suggestion-chip">Services</div>
+                <div class="suggestion-chip">Book Appointment</div>
+                <div class="suggestion-chip">Holistic Therapy</div>
+                <div class="suggestion-chip">Online Physical Therapy</div>
+                <div class="suggestion-chip">Insurance</div>
+            </div>
+            <div class="chat-input-container">
+                <input type="text" class="chat-input" id="chatInput" placeholder="Type your question...">
+                <button class="send-btn" id="sendMessage">➤</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Session Survey Modal -->
+    <div class="modal-overlay" id="surveyModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 class="modal-title">Session Feedback</h3>
+                <button class="modal-close" id="closeSurvey">✕</button>
+            </div>
+            <div id="surveyContent">
+                <div id="surveyForm">
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="surveyProgress" style="width: 0%"></div>
+                    </div>
+
+                    <div class="survey-page" data-page="1">
+                        <h4>How would you rate your overall experience today?</h4>
+                        <div class="rating-container" id="overallRating">
+                            <span class="rating-star" data-value="1">★</span>
+                            <span class="rating-star" data-value="2">★</span>
+                            <span class="rating-star" data-value="3">★</span>
+                            <span class="rating-star" data-value="4">★</span>
+                            <span class="rating-star" data-value="5">★</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="therapistName">Therapist Name</label>
+                            <input type="text" id="therapistName" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="sessionType">Session Type</label>
+                            <select id="sessionType" class="form-control">
+                                <option value="">Select session type</option>
+                                <option value="individual">Individual Therapy</option>
+                                <option value="couples">Couples Therapy</option>
+                                <option value="family">Family Therapy</option>
+                                <option value="mindfulness">Mindfulness & Stress Management</option>
+                                <option value="yoga">Yoga Therapy</option>
+                                <option value="treadmill">Treadmill Therapy</option>
+                                <option value="resistance">Resistance Band Training</option>
+                                <option value="device">Therapeutic Device Integration</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div style="text-align: right; margin-top: 1.5rem;">
+                            <button class="btn next-btn" data-next="2">Next</button>
+                        </div>
+                    </div>
+
+                    <div class="survey-page" data-page="2" style="display: none;">
+                        <h4>Please rate the following aspects of your session:</h4>
+
+                        <div class="form-group">
+                            <label>Therapist's knowledge and expertise</label>
+                            <div class="rating-container" id="expertiseRating">
+                                <span class="rating-star" data-value="1">★</span>
+                                <span class="rating-star" data-value="2">★</span>
+                                <span class="rating-star" data-value="3">★</span>
+                                <span class="rating-star" data-value="4">★</span>
+                                <span class="rating-star" data-value="5">★</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Clarity of communication</label>
+                            <div class="rating-container" id="communicationRating">
+                                <span class="rating-star" data-value="1">★</span>
+                                <span class="rating-star" data-value="2">★</span>
+                                <span class="rating-star" data-value="3">★</span>
+                                <span class="rating-star" data-value="4">★</span>
+                                <span class="rating-star" data-value="5">★</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Technical quality (for online sessions)</label>
+                            <div class="rating-container" id="technicalRating">
+                                <span class="rating-star" data-value="1">★</span>
+                                <span class="rating-star" data-value="2">★</span>
+                                <span class="rating-star" data-value="3">★</span>
+                                <span class="rating-star" data-value="4">★</span>
+                                <span class="rating-star" data-value="5">★</span>
+                            </div>
+                        </div>
+
+                        <div style="text-align: right; margin-top: 1.5rem;">
+                            <button class="btn" style="background-color: #f2f2f2; color: var(--dark); margin-right: 0.5rem;" data-prev="1">Previous</button>
+                            <button class="btn next-btn" data-next="3">Next</button>
+                        </div>
+                    </div>
+
+                    <div class="survey-page" data-page="3" style="display: none;">
+                        <h4>A few more questions:</h4>
+
+                        <div class="form-group">
+                            <label for="improvements">What could we have done better today?</label>
+                            <textarea id="improvements" class="form-control" rows="3"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="positives">What did you find most helpful about today's session?</label>
+                            <textarea id="positives" class="form-control" rows="3"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Would you recommend our services to others?</label>
+                            <div style="display: flex; gap: 1rem; margin-top: 0.5rem;">
+                                <label style="display: flex; align-items: center;">
+                                    <input type="radio" name="recommend" value="yes" style="margin-right: 0.5rem;">
+                                    Yes
+                                </label>
+                                <label style="display: flex; align-items: center;">
+                                    <input type="radio" name="recommend" value="maybe" style="margin-right: 0.5rem;">
+                                    Maybe
+                                </label>
+                                <label style="display: flex; align-items: center;">
+                                    <input type="radio" name="recommend" value="no" style="margin-right: 0.5rem;">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+
+                        <div style="text-align: right; margin-top: 1.5rem;">
+                            <button class="btn" style="background-color: #f2f2f2; color: var(--dark); margin-right: 0.5rem;" data-prev="2">Previous</button>
+                            <button class="btn" id="submitSurvey">Submit Feedback</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="surveyThanks" style="display: none; text-align: center;">
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">🙏</div>
+                    <h3 style="color: var(--secondary); margin-bottom: 1rem;">Thank You for Your Feedback!</h3>
+                    <p>Your insights help us continuously improve our services and provide the best possible care.</p>
+                    <div style="margin-top: 2rem;">
+                        <button class="btn" id="closeSurveyThanks">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Authentication Modals -->
+    <!-- Login Modal -->
+    <div class="auth-modal-overlay" id="loginModal">
+        <div class="auth-modal-container">
+            <button class="auth-modal-close" id="closeLoginModal">✕</button>
+            <h3 class="auth-modal-title">Sign In</h3>
+
+            <form id="loginForm">
+                <div class="auth-form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" class="auth-form-control" required>
+                    <div class="auth-error" id="loginEmailError">Please enter a valid email address</div>
+                </div>
+
+                <div class="auth-form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" class="auth-form-control" required>
+                    <div class="auth-error" id="loginPasswordError">Password must be at least 6 characters</div>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                        <input type="checkbox" id="rememberMe">
+                        <span>Remember me</span>
+                    </label>
+                    <a href="#" id="forgotPasswordLink">Forgot password?</a>
+                </div>
+
+                <button type="submit" class="auth-btn">Sign In</button>
+
+                <div class="auth-error" id="loginGeneralError" style="text-align: center; margin-top: 1rem; display: none;">Invalid email or password</div>
+            </form>
+
+            <div class="auth-or-divider">
+                <span>OR</span>
+            </div>
+
+            <div class="auth-social-buttons">
+                <button class="auth-social-btn">
+                    <span>Google</span>
+                </button>
+                <button class="auth-social-btn">
+                    <span>Facebook</span>
+                </button>
+            </div>
+
+            <div class="auth-form-footer">
+                Don't have an account? <a id="showRegisterBtn">Sign up</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="auth-modal-overlay" id="registerModal">
+        <div class="auth-modal-container">
+            <button class="auth-modal-close" id="closeRegisterModal">✕</button>
+            <h3 class="auth-modal-title">Create an Account</h3>
+
+            <form id="registerForm">
+                <div class="auth-form-group">
+                    <label for="registerFirstName">First Name</label>
+                    <input type="text" id="registerFirstName" class="auth-form-control" required>
+                    <div class="auth-error" id="registerFirstNameError">Please enter your first name</div>
+                </div>
+
+                <div class="auth-form-group">
+                    <label for="registerLastName">Last Name</label>
+                    <input type="text" id="registerLastName" class="auth-form-control" required>
+                    <div class="auth-error" id="registerLastNameError">Please enter your last name</div>
+                </div>
+
+                <div class="auth-form-group">
+                    <label for="registerEmail">Email</label>
+                    <input type="email" id="registerEmail" class="auth-form-control" required>
+                    <div class="auth-error" id="registerEmailError">Please enter a valid email address</div>
+                </div>
+
+                <div class="auth-form-group">
+                    <label for="registerPassword">Password</label>
+                    <input type="password" id="registerPassword" class="auth-form-control" required>
+                    <div class="auth-error" id="registerPasswordError">Password must be at least 8 characters with a letter and a number</div>
+                </div>
+
+                <div class="auth-form-group">
+                    <label for="registerConfirmPassword">Confirm Password</label>
+                    <input type="password" id="registerConfirmPassword" class="auth-form-control" required>
+                    <div class="auth-error" id="registerConfirmPasswordError">Passwords do not match</div>
+                </div>
+
+                <div style="margin-bottom: 1rem;">
+                    <label style="display: flex; align-items: flex-start; gap: 0.5rem; cursor: pointer;">
+                        <input type="checkbox" id="termsAgree" required style="margin-top: 3px;">
+                        <span>I agree to the <a href="#" style="color: var(--primary);">Terms of Service</a> and <a href="#" style="color: var(--primary);">Privacy Policy</a></span>
+                    </label>
+                    <div class="auth-error" id="termsAgreeError">You must agree to the terms</div>
+                </div>
+
+                <button type="submit" class="auth-btn">Create Account</button>
+
+                <div class="auth-error" id="registerGeneralError" style="text-align: center; margin-top: 1rem; display: none;">An error occurred during registration</div>
+            </form>
+
+            <div class="auth-or-divider">
+                <span>OR</span>
+            </div>
+
+            <div class="auth-social-buttons">
+                <button class="auth-social-btn">
+                    <span>Google</span>
+                </button>
+                <button class="auth-social-btn">
+                    <span>Facebook</span>
+                </button>
+            </div>
+
+            <div class="auth-form-footer">
+                Already have an account? <a id="showLoginBtn">Sign in</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Forgot Password Modal -->
+    <div class="auth-modal-overlay" id="forgotPasswordModal">
+        <div class="auth-modal-container">
+            <button class="auth-modal-close" id="closeForgotPasswordModal">✕</button>
+            <h3 class="auth-modal-title">Reset Password</h3>
+
+            <p style="margin-bottom: 1.5rem;">Enter your email address and we'll send you a link to reset your password.</p>
+
+            <form id="forgotPasswordForm">
+                <div class="auth-form-group">
+                    <label for="forgotEmail">Email</label>
+                    <input type="email" id="forgotEmail" class="auth-form-control" required>
+                    <div class="auth-error" id="forgotEmailError">Please enter a valid email address</div>
+                </div>
+
+                <button type="submit" class="auth-btn">Send Reset Link</button>
+            </form>
+
+            <div id="forgotPasswordSuccess" style="display: none; text-align: center; margin-top: 1.5rem;">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">✉️</div>
+                <h4 style="color: var(--secondary); margin-bottom: 0.5rem;">Email Sent!</h4>
+                <p>Check your inbox for password reset instructions.</p>
+            </div>
+
+            <div class="auth-form-footer">
+                <a id="backToLoginBtn">Back to Sign In</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Onboarding Survey Modal -->
+    <div class="onboarding-modal-overlay" id="onboardingModal">
+        <div class="onboarding-modal-container">
+            <div class="onboarding-modal-header">
+                <h3 class="onboarding-modal-title">Welcome to Holy Cow Therapy</h3>
+            </div>
+
+            <p>To help us provide the best possible care, please tell us a bit about what you're looking for.</p>
+
+            <div class="onboarding-progress-container">
+                <div class="onboarding-progress-bar" id="onboardingProgress" style="width: 0%"></div>
+            </div>
+
+            <div class="onboarding-page active" data-page="1">
+                <h4>What brings you to therapy today?</h4>
+                <p class="text-muted">Select all that apply</p>
+
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="reason-anxiety" name="reason" value="anxiety">
+                        <label for="reason-anxiety">Anxiety</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="reason-depression" name="reason" value="depression">
+                        <label for="reason-depression">Depression</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="reason-stress" name="reason" value="stress">
+                        <label for="reason-stress">Stress</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="reason-relationships" name="reason" value="relationships">
+                        <label for="reason-relationships">Relationship issues</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="reason-trauma" name="reason" value="trauma">
+                        <label for="reason-trauma">Trauma</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="reason-grief" name="reason" value="grief">
+                        <label for="reason-grief">Grief/Loss</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="reason-self-esteem" name="reason" value="self-esteem">
+                        <label for="reason-self-esteem">Self-esteem</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="reason-career" name="reason" value="career">
+                        <label for="reason-career">Career challenges</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="reason-physical" name="reason" value="physical">
+                        <label for="reason-physical">Physical health</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="reason-other" name="reason" value="other">
+                        <label for="reason-other">Other</label>
+                    </div>
+                </div>
+
+                <div class="onboarding-buttons">
+                    <button class="onboarding-skip">Skip survey</button>
+                    <button class="btn onboarding-next" data-next="2">Next</button>
+                </div>
+            </div>
+
+            <div class="onboarding-page" data-page="2">
+                <h4>What type of therapy are you interested in?</h4>
+
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" id="therapy-individual" name="therapy-type" value="individual">
+                        <label for="therapy-individual">Individual therapy</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="therapy-couples" name="therapy-type" value="couples">
+                        <label for="therapy-couples">Couples therapy</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="therapy-family" name="therapy-type" value="family">
+                        <label for="therapy-family">Family therapy</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="therapy-group" name="therapy-type" value="group">
+                        <label for="therapy-group">Group therapy</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="therapy-unsure" name="therapy-type" value="unsure">
+                        <label for="therapy-unsure">I'm not sure yet</label>
+                    </div>
+                </div>
+
+                <div class="onboarding-buttons">
+                    <button class="btn" style="background-color: #f2f2f2; color: var(--dark);" data-prev="1">Previous</button>
+                    <button class="btn onboarding-next" data-next="3">Next</button>
+                </div>
+            </div>
+
+            <div class="onboarding-page" data-page="3">
+                <h4>Do you have a preference for session format?</h4>
+
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" id="format-in-person" name="session-format" value="in-person">
+                        <label for="format-in-person">In-person sessions</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="format-video" name="session-format" value="video">
+                        <label for="format-video">Video sessions</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="format-phone" name="session-format" value="phone">
+                        <label for="format-phone">Phone sessions</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="format-flexible" name="session-format" value="flexible">
+                        <label for="format-flexible">Flexible/combination</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="format-no-preference" name="session-format" value="no-preference">
+                        <label for="format-no-preference">No preference</label>
+                    </div>
+                </div>
+
+                <div class="onboarding-buttons">
+                    <button class="btn" style="background-color: #f2f2f2; color: var(--dark);" data-prev="2">Previous</button>
+                    <button class="btn onboarding-next" data-next="4">Next</button>
+                </div>
+            </div>
+
+            <div class="onboarding-page" data-page="4">
+                <h4>What are you hoping to achieve through therapy?</h4>
+                <p class="text-muted">Select all that apply to you</p>
+
+                <div class="tag-group" id="goals-container">
+                    <div class="tag-item" data-value="coping">Better coping skills</div>
+                    <div class="tag-item" data-value="understanding">Self-understanding</div>
+                    <div class="tag-item" data-value="relationships">Improved relationships</div>
+                    <div class="tag-item" data-value="symptoms">Reduce symptoms</div>
+                    <div class="tag-item" data-value="trauma">Process trauma</div>
+                    <div class="tag-item" data-value="confidence">Build confidence</div>
+                    <div class="tag-item" data-value="career">Career guidance</div>
+                    <div class="tag-item" data-value="decisions">Help with decisions</div>
+                    <div class="tag-item" data-value="communication">Better communication</div>
+                    <div class="tag-item" data-value="purpose">Find purpose/meaning</div>
+                    <div class="tag-item" data-value="wellness">Overall wellness</div>
+                    <div class="tag-item" data-value="not-sure">Not sure yet</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="additional-info">Anything else you'd like us to know?</label>
+                    <textarea id="additional-info" class="form-control" rows="3" placeholder="Optional"></textarea>
+                </div>
+
+                <div class="onboarding-buttons">
+                    <button class="btn" style="background-color: #f2f2f2; color: var(--dark);" data-prev="3">Previous</button>
+                    <button class="btn" id="submitOnboarding">Submit</button>
+                </div>
+            </div>
+
+            <div id="onboardingThanks" style="display: none; text-align: center;">
+                <div style="font-size: 4rem; margin-bottom: 1rem;">🎉</div>
+                <h3 style="color: var(--secondary); margin-bottom: 1rem;">Thank You!</h3>
+                <p>Your responses will help us match you with the right therapist and services. We look forward to supporting you on your journey.</p>
+                <div style="margin-top: 2rem;">
+                    <button class="btn" id="completeOnboarding">Get Started</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab navigation functionality
+        document.addEventListener('DOMContentLoaded', function () {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const tabContents = document.querySelectorAll('.tab-content');
+            const menuToggle = document.querySelector('.menu-toggle');
+            const mainNav = document.getElementById('mainNav');
+
+            // Tab switching
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    const tabId = this.getAttribute('data-tab');
+
+                    // Hide all tab contents
+                    tabContents.forEach(content => {
+                        content.classList.remove('active');
+                    });
+
+                    // Show selected tab content
+                    document.getElementById(tabId).classList.add('active');
+
+                    // If mobile menu is open, close it after selection
+                    if (window.innerWidth <= 768) {
+                        mainNav.classList.remove('show');
+                    }
+
+                    // Scroll to top
+                    window.scrollTo(0, 0);
+                });
+            });
+
+            // Mobile menu toggle
+            menuToggle.addEventListener('click', function () {
+                mainNav.classList.toggle('show');
+            });
+
+            // Form submissions
+            const appointmentForm = document.getElementById('appointmentForm');
+            if (appointmentForm) {
+                appointmentForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    alert('Thank you for your appointment request! We will contact you shortly to confirm.');
+                    this.reset();
+                });
+            }
+
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    alert('Thank you for your message! We will get back to you soon.');
+                    this.reset();
+                });
+            }
+
+            // Chatbot functionality
+            const chatBotButton = document.getElementById('chatBotButton');
+            const chatWindow = document.getElementById('chatWindow');
+            const closeChat = document.getElementById('closeChat');
+            const chatMessages = document.getElementById('chatMessages');
+            const chatInput = document.getElementById('chatInput');
+            const sendMessage = document.getElementById('sendMessage');
+            const chatSuggestions = document.getElementById('chatSuggestions');
+
+            // Toggle chat window
+            chatBotButton.addEventListener('click', function () {
+                chatWindow.classList.toggle('active');
+            });
+
+            closeChat.addEventListener('click', function () {
+                chatWindow.classList.remove('active');
+            });
+
+            // Send message function
+            function sendUserMessage(message) {
+                if (!message.trim()) return;
+
+                // Add user message to chat
+                const userMessageDiv = document.createElement('div');
+                userMessageDiv.classList.add('message', 'user-message');
+                userMessageDiv.textContent = message;
+                chatMessages.appendChild(userMessageDiv);
+
+                // Clear input
+                chatInput.value = '';
+
+                // Scroll to bottom of messages
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+
+                // Get bot response after a short delay
+                setTimeout(() => {
+                    const botResponse = getBotResponse(message);
+                    const botMessageDiv = document.createElement('div');
+                    botMessageDiv.classList.add('message', 'bot-message');
+                    botMessageDiv.textContent = botResponse;
+                    chatMessages.appendChild(botMessageDiv);
+
+                    // Scroll to bottom again
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }, 500);
+            }
+
+            // Send message on button click
+            sendMessage.addEventListener('click', function () {
+                sendUserMessage(chatInput.value);
+            });
+
+            // Send message on Enter key
+            chatInput.addEventListener('keypress', function (e) {
+                if (e.key === 'Enter') {
+                    sendUserMessage(chatInput.value);
+                }
+            });
+
+            // Suggestion chips
+            chatSuggestions.addEventListener('click', function (e) {
+                if (e.target.classList.contains('suggestion-chip')) {
+                    sendUserMessage(e.target.textContent);
+                }
+            });
+
+            // Bot responses based on user input
+            function getBotResponse(userMessage) {
+                const message = userMessage.toLowerCase();
+
+                // Services related queries
+                if (message.includes('service') || message.includes('therapy') || message.includes('offer') || message.includes('provide')) {
+                    return "We offer a variety of services including individual therapy, couples therapy, family therapy, mindfulness & stress management, trauma therapy, and online therapy. You can view details on our Services tab.";
+                }
+
+                // Holistic therapy related queries
+                else if (message.includes('holistic') || message.includes('physical therapy') || message.includes('yoga') || message.includes('massage') || message.includes('nutrition')) {
+                    return "Our holistic therapy services integrate mind and body wellness through various approaches including yoga therapy, massage therapy, nutritional counseling, biofeedback, movement therapy, and sleep therapy. Check our Holistic Therapy tab for detailed information and wellness tips.";
+                }
+
+                // Physical therapy related queries
+                else if (message.includes('physical therapy') || message.includes('online therapy') || message.includes('treadmill') || message.includes('resistance band') || message.includes('therapy device')) {
+                    return "Our online physical therapy program allows you to work with a professional therapist remotely while using your own equipment at home. We offer treadmill therapy, resistance band training, and therapeutic device integration. Visit our Holistic Therapy tab and look for the Online Physical Therapy section for complete details.";
+                }
+
+                // Hours/Timing related queries
+                else if (message.includes('hour') || message.includes('open') || message.includes('time') || message.includes('operating')) {
+                    return "Our office hours are Monday to Friday from 9am to 6pm, Saturday from 10am to 3pm, and we're closed on Sundays.";
+                }
+
+                // Hours/Timing related queries
+                else if (message.includes('hour') || message.includes('open') || message.includes('time') || message.includes('operating')) {
+                    return "Our office hours are Monday to Friday from 9am to 6pm, Saturday from 10am to 3pm, and we're closed on Sundays.";
+                }
+
+                // Insurance related queries
+                else if (message.includes('insurance') || message.includes('cover') || message.includes('payment') || message.includes('cost') || message.includes('fee')) {
+                    return "We accept most major insurance plans. Please bring your insurance card to your first appointment or contact us at (555) 123-4567 for specific information about your coverage.";
+                }
+
+                // Therapist related queries
+                else if (message.includes('therapist') || message.includes('doctor') || message.includes('specialist') || message.includes('professional')) {
+                    return "Our team includes highly qualified therapists specializing in various areas. You can learn more about each therapist and their expertise on our 'Therapists' tab.";
+                }
+
+                // Location related queries
+                else if (message.includes('location') || message.includes('address') || message.includes('where') || message.includes('direct')) {
+                    return "We're located at 123 Wellness Way, Therapy City, TC 12345. You can find detailed directions on our 'Contact' tab.";
+                }
+
+                // Online therapy related queries
+                else if (message.includes('online') || message.includes('virtual') || message.includes('remote') || message.includes('zoom') || message.includes('video')) {
+                    return "Yes, we offer online therapy sessions using a secure video platform. These sessions provide the same quality care from the comfort of your home.";
+                }
+
+                // First visit related queries
+                else if (message.includes('first') || message.includes('initial') || message.includes('expect') || message.includes('assessment')) {
+                    return "Your first session will typically be an assessment where your therapist will gather information about your concerns and goals for therapy. This helps create a personalized treatment plan tailored to your needs.";
+                }
+
+                // Cancel/Reschedule related queries
+                else if (message.includes('cancel') || message.includes('reschedule') || message.includes('change')) {
+                    return "To cancel or reschedule an appointment, please call us at (555) 123-4567 at least 24 hours in advance to avoid a cancellation fee.";
+                }
+
+                // Help/General questions
+                else if (message.includes('help') || message.includes('question') || message.includes('information')) {
+                    return "I'm happy to help! You can ask about our services, therapists, appointment scheduling, insurance, location, or any other questions you might have about Holy Cow Therapy.";
+                }
+
+                // Default response
+                else {
+                    return "Thank you for your message. For specific information or assistance, please contact us at (555) 123-4567 or visit the relevant tab on our website. Is there something specific I can help you with today?";
+                }
+            }
+        });
+    </script>
+
+    <!-- Welcome Questionnaire Modal -->
+    <div class="modal-overlay active" id="welcomeQuestionnaire">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 class="modal-title">Welcome! Let's Get Started</h3>
+                <button class="modal-close" onclick="closeQuestionnaire()">✕</button>
+            </div>
+            <form id="questionnaireForm">
+                <div class="form-group">
+                    <label for="mood">How are you feeling today?</label>
+                    <select id="mood" class="form-control" required>
+                        <option value="">Select an option</option>
+                        <option value="stressed">Stressed</option>
+                        <option value="anxious">Anxious</option>
+                        <option value="depressed">Depressed</option>
+                        <option value="overwhelmed">Overwhelmed</option>
+                        <option value="okay">Okay</option>
+                        <option value="great">Great</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>What kind of support are you looking for?</label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="services" value="individual"> Individual Therapy</label>
+                        <label><input type="checkbox" name="services" value="couples"> Couples Therapy</label>
+                        <label><input type="checkbox" name="services" value="family"> Family Therapy</label>
+                        <label><input type="checkbox" name="services" value="trauma"> Trauma Therapy</label>
+                        <label><input type="checkbox" name="services" value="holistic"> Holistic Therapy</label>
+                        <label><input type="checkbox" name="services" value="unsure"> Not Sure Yet</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="goals">Briefly describe what you're hoping to achieve:</label>
+                    <textarea id="goals" class="form-control" rows="3" placeholder="E.g., I want to manage my anxiety better..."></textarea>
+                </div>
+                <button type="submit" class="btn">Submit</button>
+            </form>
+        </div>
+    </div>
+
+
+    <script>
+        // Booking form submission
+        document.getElementById("appointmentForm").addEventListener("submit", async function (e) {
+            e.preventDefault();
+            const form = e.target;
+            const formData = new FormData(form);
+
+            try {
+                const res = await fetch("/submit_appointment", {
+                    method: "POST",
+                    body: formData
+                });
+
+                const data = await res.json();
+                alert(data.message);
+                form.reset();
+            } catch (err) {
+                alert("Something went wrong while submitting your appointment.");
+                console.error(err);
+            }
+        });
+
+        // Contact form submission
+        document.getElementById("contactForm").addEventListener("submit", async function (e) {
+            e.preventDefault();
+            const form = e.target;
+            const formData = new FormData(form);
+
+            try {
+                const res = await fetch("/submit_contact", {
+                    method: "POST",
+                    body: formData
+                });
+
+                const data = await res.json();
+                alert(data.message);
+                form.reset();
+            } catch (err) {
+                alert("Something went wrong while sending your message.");
+                console.error(err);
+            }
+        });
+    </script>
+
+    <script>
+    // Toggle between monthly and annual pricing
+    const pricingToggle = document.getElementById('pricingToggle');
+    const monthlyPlans = document.getElementById('monthlyPlans');
+    const annualPlans = document.getElementById('annualPlans');
+    const monthlyOption = document.querySelector('.toggle-option.monthly');
+    const annualOption = document.querySelector('.toggle-option.annual');
+
+    pricingToggle.addEventListener('click', function() {
+        this.classList.toggle('monthly');
+        this.classList.toggle('annual');
+        
+        if (this.classList.contains('monthly')) {
+            monthlyPlans.style.display = 'grid';
+            annualPlans.style.display = 'none';
+            monthlyOption.classList.add('active');
+            annualOption.classList.remove('active');
+        } else {
+            monthlyPlans.style.display = 'none';
+            annualPlans.style.display = 'grid';
+            monthlyOption.classList.remove('active');
+            annualOption.classList.add('active');
+        }
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const filled = sessionStorage.getItem('questionnaireCompleted');
+        if (!filled) {
+            document.getElementById('welcomeQuestionnaire')?.classList.add('active');
+        }
+    });
+
+    function closeQuestionnaire() {
+        document.getElementById('welcomeQuestionnaire').classList.remove('active');
+    }
+
+    document.getElementById('questionnaireForm')?.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const mood = document.getElementById('mood').value;
+        const goals = document.getElementById('goals').value;
+        const services = Array.from(document.querySelectorAll('input[name="services"]:checked')).map(cb => cb.value);
+        console.log("Mood:", mood);
+        console.log("Services:", services);
+        console.log("Goals:", goals);
+        sessionStorage.setItem('questionnaireCompleted', 'true');
+        closeQuestionnaire();
+        alert("Thank you! We'll use this to recommend the best care for you.");
+    });
+</script>
+
+</body>
+
+</html>
